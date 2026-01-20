@@ -49,3 +49,41 @@ footer {
   font-size: 14px;
   color: #777;
 }
+/* BRAND */
+.brand-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  height: 60px;
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.brand-text {
+  text-align: left;
+}
+
+.brand-name {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.brand-tagline {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.hero-sub {
+  font-size: 18px;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
