@@ -1377,6 +1377,50 @@ https://templatemo.com/tm-596-electric-xtra
   font-family: 'Rajdhani', sans-serif;
 }
 
+/* === ABOUT 2 COLUMN LAYOUT === */
+.about-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  margin-top: 50px;
+}
+
+.about-text {
+  flex: 1;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #d0d0d0;
+}
+
+/* === 3D LOGO === */
+.about-logo-3d {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.about-logo-3d img {
+  width: 260px;
+  animation: logo3dRotate 8s infinite linear;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 0 25px rgba(255, 80, 0, 0.35));
+}
+
+/* 3D aylanish */
+@keyframes logo3dRotate {
+  0% {
+    transform: rotateY(0deg) rotateX(5deg);
+  }
+  50% {
+    transform: rotateY(180deg) rotateX(-5deg);
+  }
+  100% {
+    transform: rotateY(360deg) rotateX(5deg);
+  }
+}
+
 
 
 
