@@ -1232,3 +1232,12 @@ https://templatemo.com/tm-596-electric-xtra
   pointer-events: none;
 }
 
+.feature-tabs {
+  pointer-events: auto;
+  z-index: 50;
+}
+
+.tab-item {
+  cursor: pointer;
+}
+
