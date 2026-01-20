@@ -1489,6 +1489,13 @@ https://templatemo.com/tm-596-electric-xtra
   box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
 
+.telegram-widget {
+  max-width: 900px;
+  margin: 40px auto 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
 
 
 
