@@ -1166,3 +1166,52 @@ https://templatemo.com/tm-596-electric-xtra
   display: block;
 }
 
+.services {
+  padding: 100px 8%;
+  text-align: center;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 94, 0.3);
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(255, 94, 0.4);
+}
+
+.service-card h3 {
+  color: #ff7a00;
+  margin-bottom: 10px;
+}
+
+.service-card ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.service-card ul li {
+  margin-bottom: 8px;
+  padding-left: 18px;
+  position: relative;
+}
+
+.service-card ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #ff7a00;
+}
+
