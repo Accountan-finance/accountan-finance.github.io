@@ -1131,3 +1131,30 @@ https://templatemo.com/tm-596-electric-xtra
             }
 
         }
+.hero-logo {
+  margin-bottom: 30px;
+  animation: floatLogo 4s ease-in-out infinite;
+}
+
+.hero-logo img {
+  width: 140px;
+  filter: drop-shadow(0 0 20px rgba(255, 120, 0, 0.4));
+}
+.logo-orbit img {
+  width: 120px;
+  border-radius: 12px;
+  animation: rotateSlow 12s linear infinite;
+  opacity: 0.85;
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes floatLogo {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
