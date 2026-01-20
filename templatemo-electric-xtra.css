@@ -1370,6 +1370,13 @@ https://templatemo.com/tm-596-electric-xtra
     transform: scale(1) rotate(0deg);
   }
 }
+.logo-text small {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-left: 6px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
 
 
 
