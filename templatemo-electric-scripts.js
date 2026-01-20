@@ -62,3 +62,21 @@ setInterval(() => {
   const h1 = textSets[currentIndex].querySelector('h1');
   wrapText(h1);
 }, 4000);
+
+fetch("https://cbu.uz/oz/arkhiv-kursov-valyut/json/")
+  .then(res => res.json())
+  .then(data => {
+    const need = ["USD", "EUR", "RUB"];
+
+    data.forEach(item => {
+      if (need.includes(item.Ccy)) {
+        const el = document.getElementById(item.Ccy);
+        if (el) {
+          el.innerHTML = `
+            <strong>${item.Ccy}</strong><br>
+            ${item.Rate} so'm
+          `;
+        }
+      }
+    });
+  });
