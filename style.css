@@ -132,3 +132,13 @@ footer {
   height: 40px;
   width: auto;
 }
+
+.feature-tabs {
+  pointer-events: auto;
+  z-index: 50;
+}
+
+.tab-item {
+  cursor: pointer;
+}
+
