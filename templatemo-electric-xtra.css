@@ -1421,6 +1421,18 @@ https://templatemo.com/tm-596-electric-xtra
   }
 }
 
+@media (max-width: 900px) {
+  .about-grid {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-logo-3d img {
+    width: 200px;
+    margin-top: 30px;
+  }
+}
+
 
 
 
