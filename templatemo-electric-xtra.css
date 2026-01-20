@@ -1276,5 +1276,28 @@ https://templatemo.com/tm-596-electric-xtra
 .service-clean-card ul li {
   margin-bottom: 6px;
 }
+.telegram-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 56px;
+  height: 56px;
+  background: #0088cc;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0,136,204,0.4);
+  z-index: 9999;
+  transition: transform 0.3s ease;
+}
+
+.telegram-float:hover {
+  transform: scale(1.1);
+}
+
 
 
