@@ -80,3 +80,34 @@ fetch("https://cbu.uz/oz/arkhiv-kursov-valyut/json/")
       }
     });
   });
+
+
+fetch('https://sheetdb.io/api/v1/yozez32tnbpdj')
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById('news-container');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    data.reverse().forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'news-card';
+
+      card.innerHTML = `
+        <h4>${item.title}</h4>
+        <p>${item.text}</p>
+        <div class="news-footer">
+          <span class="news-date">${item.date}</span>
+          ${item.link ? `<a href="${item.link}" target="_blank">Batafsil →</a>` : ''}
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  })
+  .catch(error => {
+    console.error(error);
+    document.getElementById('news-container').innerHTML =
+
+
