@@ -1214,4 +1214,21 @@ https://templatemo.com/tm-596-electric-xtra
   left: 0;
   color: #ff7a00;
 }
+/* CLICK BLOKLANISHINI OCHISH */
+.features,
+.feature-tabs,
+.tab-item,
+.content-panel {
+  position: relative;
+  z-index: 20;
+}
+
+/* Background animatsiyalar clickni to‘smasin */
+.grid-bg,
+.gradient-overlay,
+.scanlines,
+.shapes-container,
+#particles {
+  pointer-events: none;
+}
 
