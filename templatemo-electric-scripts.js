@@ -124,21 +124,56 @@ https://templatemo.com/tm-596-electric-xtra
         // Initialize particles
         createParticles();
 
-        // Text rotation with character animation
-        const textSets = document.querySelectorAll('.text-set');
-        let currentIndex = 0;
-        let isAnimating = false;
+       // Text rotation with character animation
+const textSets = document.querySelectorAll('.text-set');
+let currentIndex = 0;
+let isAnimating = false;
 
-        function wrapTextInSpans(element) {
-            const text = element.textContent;
-            element.innerHTML = text.split('').map((char, i) => 
-                `<span class="char" style="animation-delay: ${i * 0.05}s">${char === ' ' ? '&nbsp;' : char}</span>`
-            ).join('');
-        }
+// Wrap each character in span
+function wrapTextInSpans(element) {
+  const text = element.textContent.trim();
+  element.innerHTML = text
+    .split('')
+    .map(
+      (char, i) =>
+        `<span class="char" style="animation-delay:${i * 0.05}s">${
+          char === ' ' ? '&nbsp;' : char
+        }</span>`
+    )
+    .join('');
+}
 
-        function animateTextIn(textSet) {
-            const glitchText = textSet.querySelector('.glitch-text');
-            const subtitle = textSet.querySelector('.subtitle');
+// Initial setup
+textSets.forEach((set, index) => {
+  const h1 = set.querySelector('h1');
+  wrapTextInSpans(h1);
+
+  if (index === 0) {
+    set.classList.add('active');
+  } else {
+    set.classList.remove('active');
+  }
+});
+
+// Rotation logic
+setInterval(() => {
+  if (isAnimating) return;
+  isAnimating = true;
+
+  textSets[currentIndex].classList.remove('active');
+
+  currentIndex = (currentIndex + 1) % textSets.length;
+
+  textSets[currentIndex].classList.add('active');
+
+  const h1 = textSets[currentIndex].querySelector('h1');
+  wrapTextInSpans(h1);
+
+  setTimeout(() => {
+    isAnimating = false;
+  }, 1200);
+}, 3500);
+
             
             // Wrap text in spans for animation
             wrapTextInSpans(glitchText);
@@ -208,4 +243,5 @@ https://templatemo.com/tm-596-electric-xtra
                     }, 200);
                 }
             });
+
         }, 3000);
