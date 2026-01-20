@@ -1340,5 +1340,36 @@ https://templatemo.com/tm-596-electric-xtra
   text-decoration: underline;
 }
 
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-anim {
+  width: 40px;
+  height: 40px;
+  animation: logoPulse 4s infinite ease-in-out;
+}
+
+.logo-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+@keyframes logoPulse {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(6deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
 
 
