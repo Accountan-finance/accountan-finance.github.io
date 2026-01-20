@@ -1158,3 +1158,11 @@ https://templatemo.com/tm-596-electric-xtra
   100% { transform: translateY(0); }
 }
 
+.text-set {
+  display: none;
+}
+
+.text-set.active {
+  display: block;
+}
+
