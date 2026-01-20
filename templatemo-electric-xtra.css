@@ -1497,6 +1497,54 @@ https://templatemo.com/tm-596-electric-xtra
 }
 
 
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.news-card {
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,90,0,0.4);
+  padding: 20px;
+  border-radius: 14px;
+  transition: 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(255,90,0,0.3);
+}
+
+.news-card h4 {
+  color: #ff5e00;
+  margin-bottom: 10px;
+}
+
+.news-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.news-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.news-date {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.news-card a {
+  color: #00b2ff;
+  font-size: 13px;
+}
+
 
 
 
