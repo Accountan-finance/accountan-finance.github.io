@@ -57,7 +57,7 @@ https://templatemo.com/tm-596-electric-xtra
         .shape-circle {
             width: 300px;
             height: 300px;
-            border: 2px solid #FF5E00;
+            border: 2px solid #9b1c1c;
             border-radius: 50%;
             top: 10%;
             left: 10%;
@@ -78,7 +78,7 @@ https://templatemo.com/tm-596-electric-xtra
         .shape-square {
             width: 150px;
             height: 150px;
-            border: 2px solid #00B2FF;
+            border: 2px solid #2c2c2c;
             transform: rotate(45deg);
             bottom: 20%;
             left: 20%;
@@ -137,8 +137,8 @@ https://templatemo.com/tm-596-electric-xtra
             position: absolute;
             width: 2px;
             height: 2px;
-            background: #FF5E00;
-            box-shadow: 0 0 10px #FF5E00, 0 0 20px #FF5E00;
+            background: #9b1c1c;
+            box-shadow: 0 0 10px #9b1c1c, 0 0 20px #9b1c1c;
             animation: float-up 15s linear infinite;
         }
 
@@ -202,7 +202,7 @@ https://templatemo.com/tm-596-electric-xtra
             font-family: 'Orbitron', monospace;
             font-size: 24px;
             font-weight: 900;
-            background: linear-gradient(45deg, #FF5E00, #00B2FF);
+            background: linear-gradient(45deg, #9b1c1c, #2c2c2c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: glow 2s ease-in-out infinite;
@@ -242,7 +242,7 @@ https://templatemo.com/tm-596-electric-xtra
 
         .nav-links a.active {
             opacity: 1;
-            color: #FF5E00;
+            color: #9b1c1c;
         }
 
         .nav-links a::before {
@@ -258,7 +258,7 @@ https://templatemo.com/tm-596-electric-xtra
 
         .nav-links a:hover::before,
         .nav-links a.active::before {
-            border-color: #FF5E00;
+            border-color: #9b1c1c;
             box-shadow: inset 0 0 10px rgba(255, 94, 0, 0.5);
         }
 
@@ -269,7 +269,7 @@ https://templatemo.com/tm-596-electric-xtra
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #FF5E00, #00B2FF);
+            background: linear-gradient(90deg, #9b1c1c, #2c2c2c);
             transition: width 0.3s ease;
             box-shadow: 0 0 10px rgba(255, 94, 0, 0.8);
         }
@@ -290,7 +290,7 @@ https://templatemo.com/tm-596-electric-xtra
         .menu-toggle span {
             width: 25px;
             height: 2px;
-            background: #FF5E00;
+            background: #9b1c1c;
             transition: all 0.3s ease;
         }
 
@@ -439,16 +439,16 @@ https://templatemo.com/tm-596-electric-xtra
 
         .glitch-text::before {
             animation: glitch-1 0.5s infinite;
-            color: #FF5E00;
+            color: #9b1c1c;
             z-index: -1;
-            text-shadow: -2px 0 #FF5E00;
+            text-shadow: -2px 0 #9b1c1c;
         }
 
         .glitch-text::after {
             animation: glitch-2 0.5s infinite;
-            color: #00B2FF;
+            color: #2c2c2c;
             z-index: -1;
-            text-shadow: 2px 0 #00B2FF;
+            text-shadow: 2px 0 #2c2c2c;
         }
 
         @keyframes glitch-1 {
@@ -510,7 +510,7 @@ https://templatemo.com/tm-596-electric-xtra
         }
 
         .cta-primary {
-            background: linear-gradient(45deg, #FF5E00, #00B2FF);
+            background: linear-gradient(45deg, #9b1c1c, #2c2c2c);
             color: white;
             animation: pulse 2s infinite;
             box-shadow: 0 0 30px rgba(255, 94, 0, 0.5);
@@ -529,8 +529,8 @@ https://templatemo.com/tm-596-electric-xtra
 
         .cta-secondary {
             background: transparent;
-            color: #FF5E00;
-            border: 2px solid #FF5E00;
+            color: #9b1c1c;
+            border: 2px solid #9b1c1c;
             box-shadow: inset 0 0 20px rgba(255, 94, 0, 0.1);
         }
 
@@ -574,7 +574,7 @@ https://templatemo.com/tm-596-electric-xtra
             font-weight: 900;
             text-align: center;
             margin-bottom: 60px;
-            background: linear-gradient(45deg, #FF5E00, #00B2FF);
+            background: linear-gradient(45deg, #9b1c1c, #2c2c2c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
@@ -616,7 +616,7 @@ https://templatemo.com/tm-596-electric-xtra
 
         .tab-item.active {
             background: linear-gradient(45deg, rgba(255, 94, 0, 0.2), rgba(0, 178, 255, 0.2));
-            border-color: #FF5E00;
+            border-color: #9b1c1c;
             box-shadow: 0 0 20px rgba(255, 94, 0, 0.3);
         }
 
@@ -646,7 +646,7 @@ https://templatemo.com/tm-596-electric-xtra
             font-family: 'Orbitron', monospace;
             font-size: 2rem;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, #ffffff, #FF5E00);
+            background: linear-gradient(45deg, #ffffff, #9b1c1c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -674,7 +674,7 @@ https://templatemo.com/tm-596-electric-xtra
             content: '▸';
             position: absolute;
             left: 0;
-            color: #FF5E00;
+            color: #9b1c1c;
             font-size: 1.2rem;
         }
 
@@ -696,7 +696,7 @@ https://templatemo.com/tm-596-electric-xtra
             font-family: 'Orbitron', monospace;
             font-size: 2.5rem;
             margin-bottom: 30px;
-            background: linear-gradient(45deg, #FF5E00, #00B2FF);
+            background: linear-gradient(45deg, #9b1c1c, #2c2c2c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -727,7 +727,7 @@ https://templatemo.com/tm-596-electric-xtra
         .about-graphic::after {
             content: '';
             position: absolute;
-            border: 2px solid #FF5E00;
+            border: 2px solid #9b1c1c;
             border-radius: 10px;
             box-shadow: 0 0 30px rgba(255, 94, 0, 0.5);
         }
@@ -743,7 +743,7 @@ https://templatemo.com/tm-596-electric-xtra
             height: 80%;
             top: 10%;
             left: 10%;
-            border-color: #00B2FF;
+            border-color: #2c2c2c;
             animation: rotate 15s linear infinite reverse;
             box-shadow: 0 0 30px rgba(0, 178, 255, 0.5);
         }
@@ -763,7 +763,7 @@ https://templatemo.com/tm-596-electric-xtra
             position: absolute;
             width: 100px;
             height: 100px;
-            background: linear-gradient(45deg, #FF5E00, #00B2FF);
+            background: linear-gradient(45deg, #9b1c1c, #2c2c2c);
             opacity: 0.3;
             clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
         }
@@ -822,7 +822,7 @@ https://templatemo.com/tm-596-electric-xtra
         .form-group label {
             display: block;
             margin-bottom: 10px;
-            color: #FF5E00;
+            color: #9b1c1c;
             font-weight: 500;
             text-transform: uppercase;
             font-size: 0.9rem;
@@ -845,7 +845,7 @@ https://templatemo.com/tm-596-electric-xtra
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #FF5E00;
+            border-color: #9b1c1c;
             box-shadow: 0 0 20px rgba(255, 94, 0, 0.3);
             background: rgba(255, 255, 255, 0.08);
         }
@@ -858,7 +858,7 @@ https://templatemo.com/tm-596-electric-xtra
         .submit-btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(45deg, #FF5E00, #00B2FF);
+            background: linear-gradient(45deg, #9b1c1c, #2c2c2c);
             color: white;
             border: none;
             border-radius: 5px;
@@ -884,7 +884,7 @@ https://templatemo.com/tm-596-electric-xtra
             font-family: 'Orbitron', monospace;
             font-size: 2rem;
             margin-bottom: 30px;
-            background: linear-gradient(45deg, #ffffff, #FF5E00);
+            background: linear-gradient(45deg, #ffffff, #9b1c1c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -899,7 +899,7 @@ https://templatemo.com/tm-596-electric-xtra
         .info-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(45deg, #FF5E00, #00B2FF);
+            background: linear-gradient(45deg, #9b1c1c, #2c2c2c);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -908,7 +908,7 @@ https://templatemo.com/tm-596-electric-xtra
         }
 
         .info-details h4 {
-            color: #FF5E00;
+            color: #9b1c1c;
             margin-bottom: 5px;
             font-size: 1.1rem;
         }
@@ -974,14 +974,14 @@ https://templatemo.com/tm-596-electric-xtra
         }
 
         .footer-links a {
-            color: #FF5E00;
+            color: #9b1c1c;
             text-decoration: none;
             transition: all 0.3s ease;
             font-weight: 500;
         }
 
         .footer-links a:hover {
-            color: #00B2FF;
+            color: #2c2c2c;
             text-shadow: 0 0 10px currentColor;
         }
 
@@ -991,13 +991,13 @@ https://templatemo.com/tm-596-electric-xtra
         }
 
         .copyright a {
-            color: #FF5E00;
+            color: #9b1c1c;
             text-decoration: none;
             transition: all 0.3s ease;
         }
 
         .copyright a:hover {
-            color: #00B2FF;
+            color: #2c2c2c;
             text-shadow: 0 0 10px currentColor;
         }
 
@@ -1129,4 +1129,5 @@ https://templatemo.com/tm-596-electric-xtra
             .shape-square {
                 transform: scale(0.6);
             }
+
         }
