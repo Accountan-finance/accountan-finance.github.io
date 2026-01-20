@@ -1299,5 +1299,46 @@ https://templatemo.com/tm-596-electric-xtra
   transform: scale(1.1);
 }
 
+/* Contact social icons */
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.info-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* Telegram */
+.info-item.telegram .info-icon {
+  background: #229ED9;
+  color: #fff;
+}
+
+/* Instagram */
+.info-item.instagram .info-icon {
+  background: radial-gradient(circle at 30% 30%,
+    #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  color: #fff;
+}
+
+/* Links */
+.info-item a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.info-item a:hover {
+  text-decoration: underline;
+}
+
 
 
