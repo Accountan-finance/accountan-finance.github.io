@@ -1,14 +1,16 @@
-auth.onAuthStateChanged(user => {
-  const loginBtn  = document.getElementById("nav-login");
-  const profileBtn = document.getElementById("nav-profile");
+// js/header.js
 
-  if (!loginBtn || !profileBtn) return;
+auth.onAuthStateChanged(user => {
+  const loginLink  = document.getElementById("nav-login");
+  const profileLink = document.getElementById("nav-profile");
+
+  if (!loginLink || !profileLink) return;
 
   if (user) {
-    loginBtn.style.display = "none";
-    profileBtn.style.display = "inline-block";
+    loginLink.style.display = "none";
+    profileLink.style.display = "inline-block";
   } else {
-    loginBtn.style.display = "inline-block";
-    profileBtn.style.display = "none";
+    loginLink.style.display = "inline-block";
+    profileLink.style.display = "none";
   }
 });
