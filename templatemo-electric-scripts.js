@@ -63,23 +63,10 @@ setInterval(() => {
   wrapText(h1);
 }, 4000);
 
-fetch("https://cbu.uz/oz/arkhiv-kursov-valyut/json/")
-  .then(res => res.json())
-  .then(data => {
-    const usd = data.find(v => v.Ccy === "USD");
-    const eur = data.find(v => v.Ccy === "EUR");
-    const rub = data.find(v => v.Ccy === "RUB");
-
-    document.getElementById("usd").innerText = `USD: ${usd.Rate} so‘m`;
-    document.getElementById("eur").innerText = `EUR: ${eur.Rate} so‘m`;
-    document.getElementById("rub").innerText = `RUB: ${rub.Rate} so‘m`;
-  });
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
 
-  fetch("https://sheetdb.io/api/v1/yozez32tnbpdj") 
+  // ===== NEWS =====
+  fetch("https://sheetdb.io/api/v1/API_YOZGANMAN")
     .then(res => res.json())
     .then(data => {
       if (!data || data.length === 0) return;
@@ -93,33 +80,26 @@ document.addEventListener("DOMContentLoaded", () => {
       const lastIndex = data.length - 1;
       const last = data[lastIndex];
 
-      // sticky (FAQAT MATN)
+      // sticky
       stickyText.textContent = last.text;
       sticky.style.display = "block";
 
-      // qolgan yangiliklar
-      data
-        .slice(0, lastIndex)
-        .reverse()
-        .forEach(item => {
-          const div = document.createElement("div");
-          div.className = "news-item";
-          div.innerHTML = `
-            <h4>${item.title}</h4>
-            <p>${item.text}</p>
-            <small>${item.date}</small><br>
-            <a href="${item.link}" target="_blank">Batafsil</a>
-          `;
-          newsList.appendChild(div);
-        });
+      // news
+      data.slice(0, lastIndex).reverse().forEach(item => {
+        const div = document.createElement("div");
+        div.className = "news-item";
+        div.innerHTML = `
+          <h4>${item.title}</h4>
+          <p>${item.text}</p>
+          <small>${item.date}</small><br>
+          <a href="${item.link}" target="_blank">Batafsil</a>
+        `;
+        newsList.appendChild(div);
+      });
     })
     .catch(err => console.error("NEWS ERROR:", err));
 
-});
-
-
-
-  // ===== VALYUTA KURSLARI =====
+  // ===== CURRENCY =====
   fetch("https://cbu.uz/oz/arkhiv-kursov-valyut/json/")
     .then(res => res.json())
     .then(data => {
@@ -127,13 +107,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const eur = data.find(v => v.Ccy === "EUR");
       const rub = data.find(v => v.Ccy === "RUB");
 
-      document.getElementById("usd").innerText = `USD: ${usd.Rate} so‘m`;
-      document.getElementById("eur").innerText = `EUR: ${eur.Rate} so‘m`;
-      document.getElementById("rub").innerText = `RUB: ${rub.Rate} so‘m`;
+      document.getElementById("usd").textContent = `USD: ${usd.Rate} so‘m`;
+      document.getElementById("eur").textContent = `EUR: ${eur.Rate} so‘m`;
+      document.getElementById("rub").textContent = `RUB: ${rub.Rate} so‘m`;
     })
     .catch(err => console.error("CURRENCY ERROR:", err));
 
 });
+
+
 
 
 
