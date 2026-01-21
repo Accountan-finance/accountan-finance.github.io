@@ -89,24 +89,31 @@ document.addEventListener("DOMContentLoaded", () => {
       const sticky = document.getElementById("sticky-alert");
       const stickyText = document.getElementById("sticky-text");
 
-     const lastIndex = data.length - 1;
+      const lastIndex = data.length - 1;
+      const last = data[lastIndex];
 
-data
-  .slice(0, lastIndex) // ❗ oxirgi (sticky) xabarni olib tashlaymiz
-  .reverse()
-  .forEach(item => {
-    const div = document.createElement("div");
-    div.className = "news-item";
-    div.innerHTML = `
-      <h4>${item.title}</h4>
-      <p>${item.text}</p>
-      <small>${item.date}</small><br>
-      <a href="${item.link}" target="_blank">Batafsil</a>
-    `;
-    newsList.appendChild(div);
-  });
+      // sticky
+      stickyText.innerHTML = last.text;
+      sticky.style.display = "block";
 
+      // qolgan yangiliklar
+      data
+        .slice(0, lastIndex)
+        .reverse()
+        .forEach(item => {
+          const div = document.createElement("div");
+          div.className = "news-item";
+          div.innerHTML = `
+            <h4>${item.title}</h4>
+            <p>${item.text}</p>
+            <small>${item.date}</small><br>
+            <a href="${item.link}" target="_blank">Batafsil</a>
+          `;
+          newsList.appendChild(div);
+        });
+    })
     .catch(err => console.error("NEWS ERROR:", err));
+
 
   // ===== VALYUTA KURSLARI =====
   fetch("https://cbu.uz/oz/arkhiv-kursov-valyut/json/")
@@ -121,11 +128,9 @@ data
       document.getElementById("rub").innerText = `RUB: ${rub.Rate} so‘m`;
     })
     .catch(err => console.error("CURRENCY ERROR:", err));
+
 });
 
-function closeAlert() {
-  document.getElementById("sticky-alert").style.display = "none";
-}
 
 
 
