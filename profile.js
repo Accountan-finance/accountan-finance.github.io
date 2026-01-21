@@ -34,3 +34,35 @@ auth.onAuthStateChanged(user => {
     profileForm.style.display = "none";
   }
 });
+
+// Firestore ulash
+const db = firebase.firestore();
+
+// Profilni saqlash
+function saveProfile() {
+  const user = auth.currentUser;
+  if (!user) return alert("Avval login qiling");
+
+  const phone = document.getElementById("phone").value;
+  const fullName = document.getElementById("fullName").value;
+  const company = document.getElementById("company").value;
+  const city = document.getElementById("city").value;
+
+  db.collection("users").doc(user.uid).set({
+    uid: user.uid,
+    name: user.displayName,
+    email: user.email,
+    phone: phone,
+    fullName: fullName,
+    company: company,
+    city: city,
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+  }, { merge: true })
+  .then(() => {
+    alert("Profil saqlandi ✅");
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Xatolik yuz berdi ❌");
+  });
+}
