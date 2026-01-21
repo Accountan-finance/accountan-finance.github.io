@@ -1571,6 +1571,14 @@ section {
   z-index: 1;
 }
 
+#sticky-alert {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  max-width: 420px;
+  z-index: 9999;
+}
+
 
 
 
