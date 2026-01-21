@@ -79,8 +79,7 @@ fetch("https://cbu.uz/oz/arkhiv-kursov-valyut/json/")
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ===== YANGILIKLAR =====
-  fetch("https://sheetdb.io/api/v1/yozez32tnbpdj")
+  fetch("https://sheetdb.io/api/v1/yozez32tnbpdj") 
     .then(res => res.json())
     .then(data => {
       if (!data || data.length === 0) return;
@@ -89,11 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const sticky = document.getElementById("sticky-alert");
       const stickyText = document.getElementById("sticky-text");
 
+      if (!newsList || !sticky || !stickyText) return;
+
       const lastIndex = data.length - 1;
       const last = data[lastIndex];
 
-      // sticky
-      stickyText.innerHTML = last.text;
+      // sticky (FAQAT MATN)
+      stickyText.textContent = last.text;
       sticky.style.display = "block";
 
       // qolgan yangiliklar
@@ -114,6 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error("NEWS ERROR:", err));
 
+});
+
+
 
   // ===== VALYUTA KURSLARI =====
   fetch("https://cbu.uz/oz/arkhiv-kursov-valyut/json/")
@@ -130,6 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("CURRENCY ERROR:", err));
 
 });
+
 
 
 
