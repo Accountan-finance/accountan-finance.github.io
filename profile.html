@@ -28,6 +28,26 @@
   function login() {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
+    <div id="profile-form" style="display:none; margin-top:20px; text-align:left;">
+  <h3>Profil maʼlumotlari</h3>
+
+  <label>Telefon raqam</label>
+  <input type="tel" id="phone" placeholder="+998901234567">
+
+  <label>Tug‘ilgan sana</label>
+  <input type="date" id="birthdate">
+
+  <label>Korxona / tashkilot nomi</label>
+  <input type="text" id="company" placeholder="Masalan: ABC MCHJ">
+
+  <label>Viloyat / shahar</label>
+  <input type="text" id="region" placeholder="Masalan: Toshkent shahri">
+
+  <button onclick="saveProfile()" style="margin-top:15px; width:100%;">
+    Saqlash
+  </button>
+</div>
+
   }
 
   // Logout
