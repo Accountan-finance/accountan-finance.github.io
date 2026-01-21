@@ -55,18 +55,16 @@ content="Professional buxgalteriya, BUXGALTER, konstalting, бухгалтери
 
 </a>
 
-<nav class="menu">
+<nav class="main-nav">
   <a href="#home">BOSH SAHIFA</a>
   <a href="#services">XIZMATLAR</a>
   <a href="#about">BIZ HAQIMIZDA</a>
   <a href="#contact">ALOQA</a>
 
-  <!-- LOGIN -->
-  <a href="login.html" id="login-link">KIRISH</a>
-
-  <!-- PROFILE -->
-  <a href="profile.html" id="profile-link" style="display:none;">PROFIL</a>
+  <a id="nav-login" href="login.html">KIRISH</a>
+  <a id="nav-profile" href="profile.html" style="display:none">PROFIL</a>
 </nav>
+
                                  
       </ul>
     </div>
@@ -294,15 +292,13 @@ firebase.auth().onAuthStateChanged(user => {
 });
 </script>
 
-  <script src="firebase.js"></script>
-<script>
-  console.log("Firebase auth:", auth);
-</script>
+<script src="firebase.js"></script>
+<script src="header.js"></script>
 
-  <script src="header.js"></script>
 
 </body>
 </html>
+
 
 
 
