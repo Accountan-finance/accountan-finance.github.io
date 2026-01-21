@@ -81,33 +81,34 @@ fetch("https://sheetdb.io/api/v1/yozez32tnbpdj") // sening SheetDB link
   .then(res => res.json())
   .then(data => {
 
-    const newsList = document.getElementById("news-list");
+  const newsList = document.getElementById("news-list");
 
-    // 🔥 Oxirgi xabarni sticky qilamiz
-    const last = data[data.length - 1];
+// 🛡️ Himoya: data bo‘sh bo‘lmasin
+if (!data || data.length === 0) return;
 
-    // Sticky
-    document.getElementById("sticky-text").innerHTML = last.text;
-    document.getElementById("sticky-alert").style.display = "block";
+// 🔥 Oxirgi xabar (sticky uchun)
+const last = data[data.length - 1];
 
-    // Barcha yangiliklar
-    data.reverse().forEach(item => {
-      const div = document.createElement("div");
-      div.className = "news-item";
-      div.innerHTML = `
-        <h4>${item.title}</h4>
-        <p>${item.text}</p>
-        <small>${item.date}</small><br>
-        <a href="${item.link}" target="_blank">Batafsil</a>
-      `;
-      newsList.appendChild(div);
-    });
-  });
+// Sticky
+document.getElementById("sticky-text").innerHTML = last.text;
+document.getElementById("sticky-alert").style.display = "block";
+
+// 🧠 Nusxa olib, keyin reverse qilamiz
+data.slice().reverse().forEach(item => {
+  const div = document.createElement("div");
+  div.className = "news-item";
+  div.innerHTML = `
+    <h4>${item.title}</h4>
+    <p>${item.text}</p>
+    <small>${item.date}</small><br>
+    <a href="${item.link}" target="_blank">Batafsil</a>
+  `;
+  newsList.appendChild(div);
+});
 
 function closeAlert() {
   document.getElementById("sticky-alert").style.display = "none";
 }
-
 
 
 
