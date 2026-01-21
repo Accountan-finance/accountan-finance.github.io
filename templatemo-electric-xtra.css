@@ -1526,22 +1526,22 @@ https://templatemo.com/tm-596-electric-xtra
 
 
 #sticky-alert {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #8b1e1e;
-  color: #fff;
-  padding: 15px 20px;
-  border-radius: 10px;
-  max-width: 360px;
-  font-size: 14px;
-  z-index: 9999;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  animation: slideUp 0.6s ease;
 }
 
-#sticky-alert .close {
-  margin-left: 15px;
-  cursor: pointer;
-  font-weight: bold;
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 }
 
 #currency {
@@ -1570,6 +1570,7 @@ https://templatemo.com/tm-596-electric-xtra
 .currency-card:hover {
   transform: translateY(-6px);
 }
+
 
 
 
