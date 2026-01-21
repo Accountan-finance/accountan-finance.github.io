@@ -1,27 +1,14 @@
 auth.onAuthStateChanged(user => {
-  const btn = document.getElementById("auth-btn");
-  if (!btn) return;
+  const loginBtn  = document.getElementById("nav-login");
+  const profileBtn = document.getElementById("nav-profile");
+
+  if (!loginBtn || !profileBtn) return;
 
   if (user) {
-    btn.innerText = "PROFIL";
-    btn.href = "profile.html";
+    loginBtn.style.display = "none";
+    profileBtn.style.display = "inline-block";
   } else {
-    btn.innerText = "KIRISH";
-    btn.href = "login.html";
-  }
-});
-
-auth.onAuthStateChanged(user => {
-  const loginLink = document.getElementById("login-link");
-  const profileLink = document.getElementById("profile-link");
-
-  if (!loginLink || !profileLink) return;
-
-  if (user) {
-    loginLink.style.display = "none";
-    profileLink.style.display = "inline-block";
-  } else {
-    loginLink.style.display = "inline-block";
-    profileLink.style.display = "none";
+    loginBtn.style.display = "inline-block";
+    profileBtn.style.display = "none";
   }
 });
