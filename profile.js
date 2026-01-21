@@ -1,79 +1,65 @@
-// Firebase auth
-const auth = firebase.auth();
+// 🔐 Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyCtnXY6BcQ0YmOS3E_SFj0BLnzb4-ISe2c",
+  authDomain: "accountan-finance.firebaseapp.com",
+  projectId: "accountan-finance",
+  storageBucket: "accountan-finance.firebasestorage.app",
+  messagingSenderId: "1057932521410",
+  appId: "1:1057932521410:web:19183a86b5a4721db2f05b"
+};
 
-// Login
+// INIT
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// 🔑 LOGIN
 function login() {
   const provider = new firebase.auth.GoogleAuthProvider();
   auth.signInWithPopup(provider);
 }
 
-// Logout
+// 🚪 LOGOUT
 function logout() {
   auth.signOut();
 }
 
-// Auth holatini tekshirish
-auth.onAuthStateChanged(user => {
-  const loginBox = document.getElementById("login-box");
-  const userInfo = document.getElementById("user-info");
-  const profileForm = document.getElementById("profile-form");
-
-  if (user) {
-    loginBox.style.display = "none";
-    userInfo.style.display = "block";
-    profileForm.style.display = "block";
-
-    document.getElementById("user-name").innerText =
-      "Ism: " + user.displayName;
-    document.getElementById("user-email").innerText =
-      "Email: " + user.email;
-
-  } else {
-    loginBox.style.display = "block";
-    userInfo.style.display = "none";
-    profileForm.style.display = "none";
-  }
-});
-
-// Firestore ulash
-const db = firebase.firestore();
-
-// Profilni saqlash
-function saveProfile() {
+// 💾 SAVE PROFILE
+async function saveProfile() {
   const user = auth.currentUser;
-  if (!user) return alert("Avval login qiling");
+  if (!user) return;
 
-  const phone = document.getElementById("phone").value;
-  const fullName = document.getElementById("fullName").value;
-  const company = document.getElementById("company").value;
-  const city = document.getElementById("city").value;
-
-  db.collection("users").doc(user.uid).set({
-    uid: user.uid,
-    name: user.displayName,
+  await db.collection("users").doc(user.uid).set({
+    fullname: document.getElementById("fullname").value,
+    phone: document.getElementById("phone").value,
+    company: document.getElementById("company").value,
+    city: document.getElementById("city").value,
     email: user.email,
-    phone: phone,
-    fullName: fullName,
-    company: company,
-    city: city,
     updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-  }, { merge: true })
-  .then(() => {
-    alert("Profil saqlandi ✅");
-  })
-  .catch(err => {
-    console.error(err);
-    alert("Xatolik yuz berdi ❌");
   });
+
+  alert("Ma’lumotlar saqlandi ✅");
 }
 
-auth.onAuthStateChanged(user => {
-  if (!user) {
-    // login yo'q bo'lsa
-    document.getElementById("profile-box").style.display = "none";
-  } else {
+// 🔁 AUTH STATE
+auth.onAuthStateChanged(async (user) => {
+  if (user) {
+    document.getElementById("login-box").style.display = "none";
     document.getElementById("profile-box").style.display = "block";
+
+    document.getElementById("user-name").innerText = user.displayName;
+    document.getElementById("user-email").innerText = user.email;
+
+    const doc = await db.collection("users").doc(user.uid).get();
+    if (doc.exists) {
+      const d = doc.data();
+      document.getElementById("fullname").value = d.fullname || "";
+      document.getElementById("phone").value = d.phone || "";
+      document.getElementById("company").value = d.company || "";
+      document.getElementById("city").value = d.city || "";
+    }
+  } else {
+    document.getElementById("login-box").style.display = "block";
+    document.getElementById("profile-box").style.display = "none";
   }
 });
-
-
