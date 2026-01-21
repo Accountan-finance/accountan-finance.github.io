@@ -1545,6 +1545,38 @@ https://templatemo.com/tm-596-electric-xtra
   font-size: 13px;
 }
 
+.news-item {
+  background: rgba(0,0,0,0.4);
+  padding: 15px;
+  margin: 15px auto;
+  max-width: 700px;
+  border-left: 4px solid #b03030;
+}
+
+.news-item a {
+  color: #ff8080;
+  text-decoration: underline;
+}
+
+#sticky-alert {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #8b1e1e;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  max-width: 360px;
+  font-size: 14px;
+  z-index: 9999;
+}
+
+#sticky-alert .close {
+  margin-left: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 
 
 
