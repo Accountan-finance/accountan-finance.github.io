@@ -49,3 +49,15 @@ auth.onAuthStateChanged(async (user) => {
     document.getElementById("profile-box").style.display = "none";
   }
 });
+
+function login() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider).then(() => {
+    window.location.href = "index.html";
+  });
+}
+auth.createUserWithEmailAndPassword(email, password)
+  .then(() => {
+    window.location.href = "index.html";
+  });
+
