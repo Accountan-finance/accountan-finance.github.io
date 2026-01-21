@@ -116,44 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-<script>
-  // Firebase allaqachon ulangan deb hisoblaymiz
-  const auth = firebase.auth();
-
-  auth.onAuthStateChanged(user => {
-    const loginBox = document.getElementById("login-box");
-    const userInfo = document.getElementById("user-info");
-    const profileForm = document.getElementById("profile-form");
-
-    if (user) {
-      // LOGIN BO‘LGAN
-      loginBox.style.display = "none";
-      userInfo.style.display = "block";
-      profileForm.style.display = "block";
-
-      document.getElementById("user-name").innerText =
-        "Ism: " + user.displayName;
-      document.getElementById("user-email").innerText =
-        "Email: " + user.email;
-
-    } else {
-      // LOGIN YO‘Q
-      loginBox.style.display = "block";
-      userInfo.style.display = "none";
-      profileForm.style.display = "none";
-    }
-  });
-
-  function login() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-  }
-
-  function logout() {
-    auth.signOut();
-  }
-</script>
-
 
 
 
