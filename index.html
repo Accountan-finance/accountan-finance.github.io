@@ -56,7 +56,9 @@ content="Professional buxgalteriya, BUXGALTER, konstalting, бухгалтери
         <li><a href="#home">Bosh sahifa</a></li>
         <li><a href="#services">Xizmatlar</a></li>
         <li><a href="#about">Biz haqimizda</a></li>
-        <li><a href="#contact">Aloqa</a></li>
+        <li><a href="#contact">Aloqa</a></li
+         <li><a href="profile.html" id="profile-link">Profil</a></li>
+                                 
       </ul>
     </div>
   </nav>
@@ -277,8 +279,23 @@ content="Professional buxgalteriya, BUXGALTER, konstalting, бухгалтери
 
   <!-- Profil logikasi -->
   <script src="profile.js"></script>
+
+  <script>
+firebase.auth().onAuthStateChanged(user => {
+  const profileLink = document.getElementById("profile-link");
+  if (!profileLink) return;
+
+  if (user) {
+    profileLink.innerText = "PROFIL";
+  } else {
+    profileLink.innerText = "KIRISH";
+  }
+});
+</script>
+ 
 </body>
 </html>
+
 
 
 
