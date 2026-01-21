@@ -1,15 +1,16 @@
 // header.js
-auth.onAuthStateChanged(user => {
-  const login = document.getElementById("nav-login");
-  const profile = document.getElementById("nav-profile");
 
-  if (!login || !profile) return;
+auth.onAuthStateChanged(user => {
+  const loginLink = document.getElementById("nav-login");
+  const profileLink = document.getElementById("nav-profile");
+
+  if (!loginLink || !profileLink) return;
 
   if (user) {
-    login.style.display = "none";
-    profile.style.display = "inline-block";
+    loginLink.style.display = "none";
+    profileLink.style.display = "inline-block";
   } else {
-    login.style.display = "inline-block";
-    profile.style.display = "none";
+    loginLink.style.display = "inline-block";
+    profileLink.style.display = "none";
   }
 });
