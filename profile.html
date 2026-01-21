@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Profil | Accountan Finance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Firebase COMPAT SDK -->
+  <!-- Firebase (COMPAT) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
       background: #0e0e0e;
       color: #fff;
@@ -20,128 +21,62 @@
       align-items: center;
       min-height: 100vh;
     }
-    .profile-box {
-      background: rgba(255,255,255,0.06);
+
+    .box {
+      background: rgba(255,255,255,0.05);
       padding: 30px;
-      border-radius: 14px;
+      border-radius: 12px;
       width: 100%;
       max-width: 420px;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     }
-    button {
-      padding: 12px 22px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .login-btn {
-      background: #ff6b6b;
-      color: #fff;
-    }
-    .logout-btn {
-      background: #444;
-      color: #fff;
-      margin-top: 15px;
-    }
+
     input {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
-      border-radius: 8px;
+      margin: 8px 0;
+      border-radius: 6px;
       border: none;
     }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .login-btn { background:#ff6b6b; color:#fff; }
+    .save-btn { background:#fff; color:#000; }
+    .logout-btn { background:#444; color:#fff; }
   </style>
 </head>
 <body>
 
-<div class="profile-box">
+<!-- LOGIN -->
+<div class="box" id="login-box">
   <h2>Profil</h2>
-
-  <div id="login-box">
-    <p>Profilga kirish uchun Google orqali kiring</p>
-    <button class="login-btn" onclick="login()">Google bilan kirish</button>
-  </div>
-
-  <div id="user-info" style="display:none;">
-    <p id="user-name"></p>
-    <p id="user-email"></p>
-
-    <button class="logout-btn" onclick="logout()">Chiqish</button>
-<form id="extra-form">
-  <input type="text" id="fullname" placeholder="Ism va familiya" required><br><br>
-  <input type="tel" id="phone" placeholder="Telefon raqam" required><br><br>
-  <input type="text" id="company" placeholder="Korxona nomi"><br><br>
-  <input type="text" id="address" placeholder="Shahar / tuman"><br><br>
-
-<button onclick="saveProfile()">Saqlash</button>
-
-</form>
-
-  </div>
+  <p>Google orqali kiring</p>
+  <button class="login-btn" onclick="login()">Google bilan kirish</button>
 </div>
 
-<script>
-  // 🔐 Firebase config (SENING REAL KEYLARING)
-  const firebaseConfig = {
-    apiKey: "AIzaSyCtnXY6BcQ0YmOS3E_SFj0BLnzb4-ISe2c",
-    authDomain: "accountan-finance.firebaseapp.com",
-    projectId: "accountan-finance",
-    storageBucket: "accountan-finance.firebasestorage.app",
-    messagingSenderId: "1057932521410",
-    appId: "1:1057932521410:web:19183a86b5a4721db2f05b"
-  };
+<!-- PROFILE -->
+<div class="box" id="profile-box" style="display:none">
+  <h2>Profil</h2>
 
-  // Init
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
+  <p><b>Ism:</b> <span id="user-name"></span></p>
+  <p><b>Email:</b> <span id="user-email"></span></p>
 
-  function login() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider)
-      .catch(err => alert(err.message));
-  }
+  <input id="fullname" placeholder="To‘liq ism familya">
+  <input id="phone" placeholder="Telefon raqam">
+  <input id="company" placeholder="Korxona nomi">
+  <input id="city" placeholder="Shahar / Viloyat">
 
-  function logout() {
-    auth.signOut();
-  }
+  <button class="save-btn" onclick="saveProfile()">Saqlash</button>
+  <button class="logout-btn" onclick="logout()">Chiqish</button>
+</div>
 
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      document.getElementById("login-box").style.display = "none";
-      document.getElementById("user-info").style.display = "block";
-      document.getElementById("user-name").innerText = "Ism: " + user.displayName;
-      document.getElementById("user-email").innerText = "Email: " + user.email;
-    }
-  });
-
-  function savePhone() {
-    alert("Keyingi bosqichda Firestore bilan saqlaymiz 👍");
-  }
-
-  const db = firebase.firestore();
-
-document.getElementById("extra-form").addEventListener("submit", e => {
-  e.preventDefault();
-
-  const user = auth.currentUser;
-  if (!user) return;
-
-  db.collection("users").doc(user.uid).set({
-    name: document.getElementById("fullname").value,
-    phone: document.getElementById("phone").value,
-    company: document.getElementById("company").value,
-    address: document.getElementById("address").value,
-    email: user.email,
-    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-  }).then(() => {
-    alert("Ma’lumotlar saqlandi ✅");
-  });
-});
-
-  
-</script>
-
+<script src="profile.js"></script>
 </body>
 </html>
