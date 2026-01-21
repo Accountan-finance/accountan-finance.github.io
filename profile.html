@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Profil | Accountan Finance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="templatemo-electric-xtra.css">
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+</head>
+
+<body>
+
+<div class="profile-box">
+  <h2>Profil</h2>
+
+  <!-- LOGIN -->
+  <div id="login-box">
+    <p>Profilga kirish uchun Google orqali kiring</p>
+    <button class="btn" onclick="login()">Google bilan kirish</button>
+  </div>
+
+  <!-- USER INFO -->
+  <div id="user-info" style="display:none;">
+    <p id="user-name"></p>
+    <p id="user-email"></p>
+    <button class="btn" onclick="logout()">Chiqish</button>
+  </div>
+
+  <!-- PROFILE FORM -->
+  <div id="profile-form" style="display:none; margin-top:20px;">
+    <h3>Profil maʼlumotlari</h3>
+
+    <input type="tel" id="phone" placeholder="Telefon raqam">
+    <input type="date" id="birthdate">
+    <input type="text" id="company" placeholder="Korxona nomi">
+    <input type="text" id="region" placeholder="Viloyat / shahar">
+
+    <button class="btn" onclick="saveProfile()">Saqlash</button>
+  </div>
+</div>
+
+<!-- Firebase CONFIG -->
 <script>
-  // Firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyCtnXY6BcQ0YmOS3E_SFj0BLnzb4-ISe2c",
     authDomain: "accountan-finance.firebaseapp.com",
@@ -20,56 +56,11 @@
     appId: "1:1057932521410:web:19183a86b5a4721db2f05b"
   };
 
-  // Init Firebase
   firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-
-  // Login
-  function login() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-    <div id="profile-form" style="display:none; margin-top:20px; text-align:left;">
-  <h3>Profil maʼlumotlari</h3>
-
-  <label>Telefon raqam</label>
-  <input type="tel" id="phone" placeholder="+998901234567">
-
-  <label>Tug‘ilgan sana</label>
-  <input type="date" id="birthdate">
-
-  <label>Korxona / tashkilot nomi</label>
-  <input type="text" id="company" placeholder="Masalan: ABC MCHJ">
-
-  <label>Viloyat / shahar</label>
-  <input type="text" id="region" placeholder="Masalan: Toshkent shahri">
-
-  <button onclick="saveProfile()" style="margin-top:15px; width:100%;">
-    Saqlash
-  </button>
-</div>
-
-  }
-
-  // Logout
-  function logout() {
-    auth.signOut();
-  }
-
-  // Auth state
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      document.getElementById("login-box").style.display = "none";
-      document.getElementById("user-info").style.display = "block";
-      document.getElementById("user-name").innerText = "Ism: " + user.displayName;
-      document.getElementById("user-email").innerText = "Email: " + user.email;
-    } else {
-      document.getElementById("login-box").style.display = "block";
-      document.getElementById("user-info").style.display = "none";
-    }
-  });
 </script>
-<script src="profile.js"></script>
 
+<!-- PROFILE LOGIC -->
+<script src="profile.js"></script>
 
 </body>
 </html>
