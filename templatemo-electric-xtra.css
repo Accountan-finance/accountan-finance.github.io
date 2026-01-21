@@ -1498,31 +1498,69 @@ https://templatemo.com/tm-596-electric-xtra
 
 
 #news {
-  padding: 80px 20px;
+  padding: 120px 20px;
 }
 
-#news-list {
-  max-width: 900px;
-  margin: auto;
+.news-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+.section-title.left {
+  text-align: left;
+  margin-bottom: 60px;
+  font-size: 28px;
+  letter-spacing: 2px;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 40px;
+}
+
+/* KARTOCHKA */
 .news-item {
-  background: rgba(0,0,0,0.45);
-  padding: 25px 30px;
-  margin-bottom: 30px;
-  border-radius: 12px;
-  border-left: 5px solid #b03030;
+  background: linear-gradient(
+    135deg,
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.35)
+  );
+  padding: 30px 35px;
+  border-radius: 18px;
+  border-left: 6px solid #b03030;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.news-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.7);
 }
 
 .news-item h4 {
-  margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 22px;
+  margin-bottom: 15px;
 }
 
 .news-item p {
-  line-height: 1.6;
-  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.95;
+  margin-bottom: 15px;
 }
+
+.news-item small {
+  opacity: 0.7;
+}
+
+.news-item a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #ff6b6b;
+  font-weight: 500;
+}
+
 
 
 #sticky-alert {
@@ -1570,6 +1608,7 @@ https://templatemo.com/tm-596-electric-xtra
 .currency-card:hover {
   transform: translateY(-6px);
 }
+
 
 
 
