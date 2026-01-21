@@ -89,24 +89,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const sticky = document.getElementById("sticky-alert");
       const stickyText = document.getElementById("sticky-text");
 
-      const last = data[data.length - 1];
+     const lastIndex = data.length - 1;
 
-      // Sticky
-      stickyText.innerHTML = last.text;
-      sticky.style.display = "block";
+data
+  .slice(0, lastIndex) // ❗ oxirgi (sticky) xabarni olib tashlaymiz
+  .reverse()
+  .forEach(item => {
+    const div = document.createElement("div");
+    div.className = "news-item";
+    div.innerHTML = `
+      <h4>${item.title}</h4>
+      <p>${item.text}</p>
+      <small>${item.date}</small><br>
+      <a href="${item.link}" target="_blank">Batafsil</a>
+    `;
+    newsList.appendChild(div);
+  });
 
-      data.slice().reverse().forEach(item => {
-        const div = document.createElement("div");
-        div.className = "news-item";
-        div.innerHTML = `
-          <h4>${item.title}</h4>
-          <p>${item.text}</p>
-          <small>${item.date}</small><br>
-          <a href="${item.link}" target="_blank">Batafsil</a>
-        `;
-        newsList.appendChild(div);
-      });
-    })
     .catch(err => console.error("NEWS ERROR:", err));
 
   // ===== VALYUTA KURSLARI =====
@@ -127,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function closeAlert() {
   document.getElementById("sticky-alert").style.display = "none";
 }
+
 
 
 
