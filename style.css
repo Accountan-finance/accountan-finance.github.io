@@ -142,3 +142,33 @@ footer {
   cursor: pointer;
 }
 
+/* ===== NAVBAR AUTH BUTTONS FIX ===== */
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.main-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+}
+
+/* KIRISH / PROFIL tugmalari */
+#nav-login,
+#nav-profile {
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+}
+
+#nav-login:hover,
+#nav-profile:hover {
+  background: rgba(255,255,255,0.3);
+  color: #fff;
+}
