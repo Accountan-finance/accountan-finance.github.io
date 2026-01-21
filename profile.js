@@ -66,3 +66,14 @@ function saveProfile() {
     alert("Xatolik yuz berdi ❌");
   });
 }
+
+auth.onAuthStateChanged(user => {
+  if (!user) {
+    // login yo'q bo'lsa
+    document.getElementById("profile-box").style.display = "none";
+  } else {
+    document.getElementById("profile-box").style.display = "block";
+  }
+});
+
+
