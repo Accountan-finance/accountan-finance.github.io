@@ -209,3 +209,16 @@ body {
   ) !important;
   color: #fff;
 }
+
+/* HERO fonini eski dizaynga qaytarish */
+.hero {
+  background: none !important;
+}
+
+.gradient-overlay {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.08),
+    rgba(0,0,0,0.95)
+  ) !important;
+}
