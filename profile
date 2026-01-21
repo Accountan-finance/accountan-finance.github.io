@@ -5,7 +5,7 @@
   <title>Profil | Accountan Finance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Firebase -->
+  <!-- Firebase (compat) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
@@ -63,28 +63,29 @@
 </div>
 
 <script>
-  // 🔐 Firebase config (KEYLARNI KEYIN QO'YASAN)
+  // 🔐 Firebase config (TO‘G‘RI, BITTA MARTA)
   const firebaseConfig = {
-    apiKey: "API_KEY",
-    authDomain: "PROJECT_ID.firebaseapp.com",
-    projectId: "PROJECT_ID"
+    apiKey: "AIzaSyCtnXY6BcQ0YmOS3E_SFj0BLnzb4-ISe2c",
+    authDomain: "accountan-finance.firebaseapp.com",
+    projectId: "accountan-finance",
+    storageBucket: "accountan-finance.firebasestorage.app",
+    messagingSenderId: "1057932521410",
+    appId: "1:1057932521410:web:19183a86b5a4721db2f05b"
   };
 
+  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
 
-  // Login
   function login() {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
   }
 
-  // Logout
   function logout() {
     auth.signOut();
   }
 
-  // Auth state
   auth.onAuthStateChanged(user => {
     if (user) {
       document.getElementById("login-box").style.display = "none";
