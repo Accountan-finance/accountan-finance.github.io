@@ -272,34 +272,21 @@ content="Professional buxgalteriya, BUXGALTER, konstalting, бухгалтери
   <script src="templatemo-electric-scripts.js"></script>
  
 
-  <!-- Profil logikasi -->
-  <script src="profile.js"></script>
-
-  <script>
-firebase.auth().onAuthStateChanged(user => {
-  const profileLink = document.getElementById("profile-link");
-  if (!profileLink) return;
-
-  if (user) {
-    profileLink.innerText = "PROFIL";
-  } else {
-    profileLink.innerText = "KIRISH";
-  }
-});
-</script>
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-<!-- Bizning JS lar -->
-<script src="js/firebase.js"></script>
-<script src="js/header.js"></script>
+<!-- Firebase init -->
+<script src="firebase.js"></script>
+
+<!-- Header login/profile switch -->
+<script src="header.js"></script>
 
 
 
 </body>
 </html>
+
 
 
 
