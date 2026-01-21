@@ -8,6 +8,7 @@
   <!-- Firebase COMPAT SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <style>
     body {
@@ -71,6 +72,15 @@
     <button onclick="savePhone()">Saqlash</button>
 
     <button class="logout-btn" onclick="logout()">Chiqish</button>
+<form id="extra-form">
+  <input type="text" id="fullname" placeholder="Ism va familiya" required><br><br>
+  <input type="tel" id="phone" placeholder="Telefon raqam" required><br><br>
+  <input type="text" id="company" placeholder="Korxona nomi"><br><br>
+  <input type="text" id="address" placeholder="Shahar / tuman"><br><br>
+
+  <button type="submit">Saqlash</button>
+</form>
+
   </div>
 </div>
 
@@ -111,16 +121,29 @@
   function savePhone() {
     alert("Keyingi bosqichda Firestore bilan saqlaymiz 👍");
   }
+
+  const db = firebase.firestore();
+
+document.getElementById("extra-form").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const user = auth.currentUser;
+  if (!user) return;
+
+  db.collection("users").doc(user.uid).set({
+    name: document.getElementById("fullname").value,
+    phone: document.getElementById("phone").value,
+    company: document.getElementById("company").value,
+    address: document.getElementById("address").value,
+    email: user.email,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(() => {
+    alert("Ma’lumotlar saqlandi ✅");
+  });
+});
+
+  
 </script>
-
-  <form id="extra-form">
-  <input type="text" id="fullname" placeholder="Ism va familiya" required><br><br>
-  <input type="tel" id="phone" placeholder="Telefon raqam" required><br><br>
-  <input type="text" id="company" placeholder="Korxona nomi"><br><br>
-  <input type="text" id="address" placeholder="Shahar / tuman"><br><br>
-
-  <button type="submit">Saqlash</button>
-</form>
 
 </body>
 </html>
