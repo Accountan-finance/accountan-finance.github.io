@@ -66,7 +66,7 @@ setInterval(() => {
 document.addEventListener("DOMContentLoaded", () => {
 
   // ===== NEWS =====
-  fetch("https://sheetdb.io/api/v1/API_YOZGANMAN")
+  fetch("https://sheetdb.io/api/v1/yozez32tnbpdj")
     .then(res => res.json())
     .then(data => {
       if (!data || data.length === 0) return;
@@ -114,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("CURRENCY ERROR:", err));
 
 });
+
 
 
 
