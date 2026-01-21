@@ -66,20 +66,15 @@ setInterval(() => {
 fetch("https://cbu.uz/oz/arkhiv-kursov-valyut/json/")
   .then(res => res.json())
   .then(data => {
-    const need = ["USD", "EUR", "RUB"];
+    const usd = data.find(v => v.Ccy === "USD");
+    const eur = data.find(v => v.Ccy === "EUR");
+    const rub = data.find(v => v.Ccy === "RUB");
 
-    data.forEach(item => {
-      if (need.includes(item.Ccy)) {
-        const el = document.getElementById(item.Ccy);
-        if (el) {
-          el.innerHTML = `
-            <strong>${item.Ccy}</strong><br>
-            ${item.Rate} so'm
-          `;
-        }
-      }
-    });
+    document.getElementById("usd").innerText = `USD: ${usd.Rate} so‘m`;
+    document.getElementById("eur").innerText = `EUR: ${eur.Rate} so‘m`;
+    document.getElementById("rub").innerText = `RUB: ${rub.Rate} so‘m`;
   });
+
 
 
 fetch('https://sheetdb.io/api/v1/yozez32tnbpdj')
@@ -109,5 +104,6 @@ fetch('https://sheetdb.io/api/v1/yozez32tnbpdj')
   .catch(error => {
     console.error(error);
     document.getElementById('news-container').innerHTML =
+
 
 
