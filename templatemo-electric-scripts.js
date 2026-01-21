@@ -77,33 +77,37 @@ fetch("https://cbu.uz/oz/arkhiv-kursov-valyut/json/")
 
 
 
-fetch('https://sheetdb.io/api/v1/yozez32tnbpdj')
-  .then(response => response.json())
+fetch("https://sheetdb.io/api/v1/yozez32tnbpdj") // sening SheetDB link
+  .then(res => res.json())
   .then(data => {
-    const container = document.getElementById('news-container');
-    if (!container) return;
 
-    container.innerHTML = '';
+    const newsList = document.getElementById("news-list");
 
+    // 🔥 Oxirgi xabarni sticky qilamiz
+    const last = data[data.length - 1];
+
+    // Sticky
+    document.getElementById("sticky-text").innerHTML = last.text;
+    document.getElementById("sticky-alert").style.display = "block";
+
+    // Barcha yangiliklar
     data.reverse().forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'news-card';
-
-      card.innerHTML = `
+      const div = document.createElement("div");
+      div.className = "news-item";
+      div.innerHTML = `
         <h4>${item.title}</h4>
         <p>${item.text}</p>
-        <div class="news-footer">
-          <span class="news-date">${item.date}</span>
-          ${item.link ? `<a href="${item.link}" target="_blank">Batafsil →</a>` : ''}
-        </div>
+        <small>${item.date}</small><br>
+        <a href="${item.link}" target="_blank">Batafsil</a>
       `;
-
-      container.appendChild(card);
+      newsList.appendChild(div);
     });
-  })
-  .catch(error => {
-    console.error(error);
-    document.getElementById('news-container').innerHTML =
+  });
+
+function closeAlert() {
+  document.getElementById("sticky-alert").style.display = "none";
+}
+
 
 
 
