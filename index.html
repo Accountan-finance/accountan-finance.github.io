@@ -24,12 +24,6 @@ content="Professional buxgalteriya, BUXGALTER, konstalting, бухгалтери
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!-- FAVICON -->
   <link rel="icon" type="image/png" href="favicon.png">
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
-<script src="firebase.js"></script>
-<script src="profile.js"></script>
 
 </head>
   <!-- TELEGRAM BUTTON -->
@@ -291,13 +285,20 @@ firebase.auth().onAuthStateChanged(user => {
   }
 });
 </script>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-<script src="firebase.js"></script>
-<script src="header.js"></script>
+<!-- Bizning JS lar -->
+<script src="js/firebase.js"></script>
+<script src="js/header.js"></script>
+
 
 
 </body>
 </html>
+
 
 
 
