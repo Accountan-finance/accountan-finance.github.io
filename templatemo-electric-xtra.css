@@ -1594,6 +1594,27 @@ section {
   z-index: 9999;
 }
 
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background: #1c1c1c;
+  color: #fff;
+}
+
+label {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+button {
+  background: #ff6b6b;
+  color: #fff;
+}
+
 
 
 
