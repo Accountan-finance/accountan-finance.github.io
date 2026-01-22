@@ -551,3 +551,6 @@ footer .copyright {
     text-shadow: none !important;
   }
 }
+html, body {
+  -webkit-overflow-scrolling: touch;
+}
