@@ -19,27 +19,28 @@ onAuthStateChanged(auth, async (user) => {
 
   const snap = await getDocs(q);
 
+  console.log("Murojaatlar soni:", snap.size); // 🔍 MUHIM
+
   if (snap.empty) {
-    list.innerHTML = "<p>Hozircha murojaat yo‘q.</p>";
+    list.innerHTML = "<p style='color:#aaa'>Hozircha murojaat yo‘q.</p>";
     return;
   }
+
+  list.innerHTML = ""; // tozalash
 
   snap.forEach(doc => {
     const d = doc.data();
 
     const item = document.createElement("div");
-    item.style.marginBottom = "15px";
-    item.style.padding = "12px";
-    item.style.borderRadius = "10px";
-    item.style.background = "#1e1e1e";
+    item.className = "request-card";
 
     item.innerHTML = `
-      <p><b>Savol:</b><br>${d.message}</p>
+      <p><b>Savol:</b><br>${d.message || "-"}</p>
       <p><b>Status:</b> ${d.status || "new"}</p>
       ${
         d.reply
-          ? `<p style="margin-top:8px;"><b>Javob:</b><br>${d.reply}</p>`
-          : `<p style="margin-top:8px; color:#ffb400;">⏳ Javob kutilmoqda</p>`
+          ? `<div class="reply-box"><b>Javob:</b><br>${d.reply}</div>`
+          : `<p class="waiting">⏳ Javob kutilmoqda</p>`
       }
     `;
 
