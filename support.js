@@ -51,3 +51,27 @@ sendBtn.onclick = async () => {
   sendBtn.disabled = false;
   sendBtn.textContent = "Yuborish";
 };
+
+// 🔔 TELEGRAM SOZLAMALARI
+const TELEGRAM_TOKEN = "8444694860:AAFtoXB4guexabZv9AY7heh5zOZ9ZvSATXQ";
+const TELEGRAM_CHAT_ID = "1736401983";
+
+// Telegramga yuboriladigan xabar
+const telegramText = `
+📩 Yangi bepul maslahat
+
+👤 ${currentUser.displayName || "Nomaʼlum"}
+📧 ${currentUser.email}
+
+📝 ${messageInput.value}
+`;
+
+fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    chat_id: TELEGRAM_CHAT_ID,
+    text: telegramText
+  })
+});
+
