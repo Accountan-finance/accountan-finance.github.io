@@ -62,3 +62,21 @@ logoutBtn.onclick = async () => {
   await signOut(auth);
   location.href = "index.html";
 };
+
+
+const editBtn = document.getElementById("editBtn");
+const inputs = [firstName, lastName, company, phone];
+
+// default: faqat ko‘rish
+inputs.forEach(i => i.disabled = true);
+profileForm.style.display = "none";
+
+editBtn.onclick = () => {
+  inputs.forEach(i => i.disabled = false);
+  profileForm.style.display = "block";
+  editBtn.style.display = "none";
+};
+// setDoc dan keyin
+inputs.forEach(i => i.disabled = true);
+profileForm.style.display = "none";
+editBtn.style.display = "block";
