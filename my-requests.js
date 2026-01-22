@@ -19,10 +19,10 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
+  // ❗ orderBy OLIB TASHLANDI (index muammosi sabab)
   const q = query(
     collection(db, "support_requests"),
-    where("uid", "==", user.uid),
-    orderBy("createdAt", "asc")
+    where("uid", "==", user.uid)
   );
 
   const snap = await getDocs(q);
@@ -31,6 +31,8 @@ onAuthStateChanged(auth, async (user) => {
     list.innerHTML = "<p class='empty'>Hali murojaatlar yo‘q</p>";
     return;
   }
+
+  list.innerHTML = "";
 
   for (const docSnap of snap.docs) {
     const req = docSnap.data();
@@ -42,16 +44,18 @@ onAuthStateChanged(auth, async (user) => {
       <div class="msg user-msg">
         ${req.message}
       </div>
-      <div id="replies-${docSnap.id}"></div>
+      <div class="replies" id="replies-${docSnap.id}"></div>
     `;
 
     list.appendChild(block);
 
-    // 🔽 JAVOBLARNI O‘QISH
-    const repliesSnap = await getDocs(
-      collection(db, "support_requests", docSnap.id, "replies")
+    // ✅ JAVOBLARNI TARTIB BILAN O‘QISH
+    const repliesQuery = query(
+      collection(db, "support_requests", docSnap.id, "replies"),
+      orderBy("createdAt", "asc")
     );
 
+    const repliesSnap = await getDocs(repliesQuery);
     const repliesBox = document.getElementById(`replies-${docSnap.id}`);
 
     repliesSnap.forEach(r => {
