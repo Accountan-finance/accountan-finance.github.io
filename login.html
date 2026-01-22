@@ -2,26 +2,15 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> … </title>
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="templatemo-electric-xtra.css">
+  <title>Kirish</title>
 </head>
+<body>
 
-<body class="auth-bg">
+  <h2>Google orqali kirish</h2>
+  <button id="googleLogin">Google bilan kirish</button>
 
-<div class="auth-box">
-  <h2>Kirish</h2>
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="auth.js"></script>
 
-  <input id="email" type="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Parol">
-
-  <button onclick="login()">Kirish</button>
-  <button onclick="register()">Ro‘yxatdan o‘tish</button>
-</div>
-
-<script src="firebase.js"></script>
-<script src="auth.js"></script>
 </body>
 </html>
