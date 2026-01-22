@@ -269,4 +269,44 @@ body {
     margin: 0 auto;
   }
 }
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.contact-card {
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,80,80,0.35);
+  padding: 25px;
+  border-radius: 14px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.contact-card i {
+  font-size: 34px;
+  color: #ff4d4d;
+  margin-bottom: 12px;
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(255,0,0,0.25);
+}
+.location-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+.location-link:hover i {
+  color: #ff2f2f;
+  transform: scale(1.15);
+}
+
+.location-link:hover p {
+  color: #ffffff;
+}
 
