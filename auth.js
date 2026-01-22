@@ -1,29 +1,21 @@
 // auth.js
+import { auth } from "./firebase.js";
+import {
+  GoogleAuthProvider,
+  signInWithPopup
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-function login() {
-  const email = document.getElementById("email").value;
-  const pass  = document.getElementById("password").value;
+const provider = new GoogleAuthProvider();
 
-  auth.signInWithEmailAndPassword(email, pass)
-    .then(() => {
+const loginBtn = document.getElementById("googleLogin");
+
+if (loginBtn) {
+  loginBtn.addEventListener("click", async () => {
+    try {
+      await signInWithPopup(auth, provider);
       window.location.href = "profile.html";
-    })
-    .catch(e => alert(e.message));
-}
-
-function register() {
-  const email = document.getElementById("email").value;
-  const pass  = document.getElementById("password").value;
-
-  auth.createUserWithEmailAndPassword(email, pass)
-    .then(() => {
-      window.location.href = "profile.html";
-    })
-    .catch(e => alert(e.message));
-}
-
-function logout() {
-  auth.signOut().then(() => {
-    window.location.href = "index.html";
+    } catch (err) {
+      alert("Xatolik: " + err.message);
+    }
   });
 }
