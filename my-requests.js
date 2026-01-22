@@ -3,68 +3,46 @@ import {
   collection,
   query,
   where,
-  getDocs,
-  orderBy
+  orderBy,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-import {
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const list = document.getElementById("requestsList");
-
-onAuthStateChanged(auth, async (user) => {
+auth.onAuthStateChanged(async (user) => {
   if (!user) {
     window.location.href = "login.html";
     return;
   }
 
-  console.log("USER UID:", user.uid); // 👈 MUHIM
+  const list = document.getElementById("requestsList");
+  list.innerHTML = "";
 
   const q = query(
     collection(db, "support_requests"),
-    where("uid", "==", user.uid)
+    where("uid", "==", user.uid),
+    orderBy("createdAt", "desc")
   );
 
-  const snap = await getDocs(q);
+  const snapshot = await getDocs(q);
 
-  console.log("REQUEST COUNT:", snap.size); // 👈 MUHIM
-
-  if (snap.empty) {
-    list.innerHTML = "<p class='empty'>Murojaatlar topilmadi</p>";
+  if (snapshot.empty) {
+    list.innerHTML = "<p class='empty'>Hozircha murojaat yo‘q</p>";
     return;
   }
 
-  list.innerHTML = "";
+  snapshot.forEach(doc => {
+    const data = doc.data();
 
-  for (const docSnap of snap.docs) {
-    const req = docSnap.data();
+    const item = document.createElement("div");
+    item.className = "request-item";
 
-    const block = document.createElement("div");
-    block.className = "request-block";
-
-    block.innerHTML = `
-      <div class="msg user-msg">${req.message}</div>
-      <div class="replies" id="replies-${docSnap.id}"></div>
+    item.innerHTML = `
+      <div class="msg user">${data.message}</div>
+      <div class="status">${data.status}</div>
+      <a href="request-chat.html?id=${doc.id}" class="open-chat">
+        Chatni ochish →
+      </a>
     `;
 
-    list.appendChild(block);
-
-    // JAVOBLAR
-    const repliesQuery = query(
-      collection(db, "support_requests", docSnap.id, "replies"),
-      orderBy("createdAt", "asc")
-    );
-
-    const repliesSnap = await getDocs(repliesQuery);
-    const repliesBox = document.getElementById(`replies-${docSnap.id}`);
-
-    repliesSnap.forEach(r => {
-      const reply = r.data();
-      const div = document.createElement("div");
-      div.className = "msg admin-msg";
-      div.textContent = reply.text;
-      repliesBox.appendChild(div);
-    });
-  }
+    list.appendChild(item);
+  });
 });
