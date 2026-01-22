@@ -14,13 +14,19 @@ onAuthStateChanged(auth, async (user) => {
     "Google email: " + user.email;
 
   const snap = await getDoc(doc(db, "users", user.uid));
-  if (snap.exists()) {
-    const d = snap.data();
-    document.getElementById("userName").textContent =
-      `Ism: ${d.firstName || ""} ${d.lastName || ""}`;
-    document.getElementById("userPhone").textContent =
-      `Telefon: ${d.phone || ""}`;
-  }
+if (snap.exists()) {
+  const d = snap.data();
+
+  document.getElementById("userName").textContent =
+    `Ism: ${d.firstName || ""} ${d.lastName || ""}`;
+
+  document.getElementById("userPhone").textContent =
+    `Telefon: ${d.phone || ""}`;
+
+  document.getElementById("userOrg").textContent =
+    `Tashkilot: ${d.organization || "—"}`;
+}
+
 });
 
 document.getElementById("logoutBtn").onclick = async () => {
