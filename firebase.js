@@ -1,11 +1,9 @@
-// js/firebase.js
-
-import "https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js";
-import "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js";
-import "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js";
+// firebase.js
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCtnXY6BcQ0YmOS3E_SFj0BLnzb4-ISe2c",
+  apiKey:  "AIzaSyCtnXY6BcQ0YmOS3E_SFj0BLnzb4-ISe2c",
   authDomain: "accountan-finance.firebaseapp.com",
   projectId: "accountan-finance",
   storageBucket: "accountan-finance.appspot.com",
@@ -13,7 +11,6 @@ const firebaseConfig = {
   appId: "1:1057932521410:web:19183a86b5a4721db2f05b"
 };
 
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 
-window.auth = firebase.auth();
-window.db = firebase.firestore();
