@@ -285,8 +285,32 @@
 </footer>
 
 <script src="templatemo-electric-scripts.js"></script>
+
+
+
+
+  <script type="module">
+  import { auth } from "./firebase.js";
+  import { onAuthStateChanged }
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  const authLink = document.getElementById("authLink");
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      authLink.textContent = "PROFIL";
+      authLink.href = "profile.html";
+    } else {
+      authLink.textContent = "KIRISH";
+      authLink.href = "login.html";
+    }
+  });
+</script>
+
+  
 </body>
 </html>
+
 
 
 
