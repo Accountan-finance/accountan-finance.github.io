@@ -1,7 +1,7 @@
 import { auth, db } from "./firebase.js";
 import { onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { collection, query, where, orderBy, getDocs }
+import { collection, query, where, getDocs }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const list = document.getElementById("requestsList");
@@ -14,8 +14,7 @@ onAuthStateChanged(auth, async (user) => {
 
   const q = query(
     collection(db, "support_requests"),
-    where("uid", "==", user.uid),
-    orderBy("createdAt", "desc")
+    where("uid", "==", user.uid)
   );
 
   const snap = await getDocs(q);
@@ -36,7 +35,7 @@ onAuthStateChanged(auth, async (user) => {
 
     item.innerHTML = `
       <p><b>Savol:</b><br>${d.message}</p>
-      <p><b>Status:</b> ${d.status}</p>
+      <p><b>Status:</b> ${d.status || "new"}</p>
       ${
         d.reply
           ? `<p style="margin-top:8px;"><b>Javob:</b><br>${d.reply}</p>`
