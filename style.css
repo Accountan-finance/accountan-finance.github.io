@@ -967,3 +967,64 @@ html, body {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+
+.chat-card {
+  width: 420px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+}
+
+.chat-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.chat-footer {
+  padding: 12px;
+}
+
+.msg {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.user-msg {
+  background: #ffd54f;
+  color: #000;
+  margin-left: auto;
+}
+
+.admin-msg {
+  background: #2b2b2b;
+  color: #fff;
+  margin-right: auto;
+}
+
+.back-btn,
+.home-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+}
