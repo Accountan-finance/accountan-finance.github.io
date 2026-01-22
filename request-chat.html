@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Murojaat chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="chat-page">
+  <div class="chat-card">
+
+    <!-- Header -->
+    <div class="chat-header">
+      <button onclick="history.back()" class="back-btn">← Orqaga</button>
+      <h3>Murojaat chat</h3>
+    </div>
+
+    <!-- Messages -->
+    <div id="messages" class="chat-messages">
+      <p class="loading">Yuklanmoqda...</p>
+    </div>
+
+    <!-- Input -->
+    <div class="chat-input">
+      <input id="messageInput" placeholder="Xabaringizni yozing...">
+      <button id="sendBtn">Yuborish</button>
+    </div>
+
+  </div>
+</div>
+
+<script type="module" src="request-chat.js"></script>
+</body>
+</html>
