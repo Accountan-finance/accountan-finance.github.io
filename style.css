@@ -532,3 +532,22 @@ footer .copyright {
 #navbar {
   animation: navbarFade 0.8s ease-out;
 }
+
+@media (max-width: 768px) {
+  * {
+    backdrop-filter: none !important;
+  }
+}
+@media (max-width: 768px) {
+
+  .scanlines,
+  .grid-bg,
+  .gradient-overlay {
+    display: none !important;
+  }
+
+  .glitch-text {
+    animation: none !important;
+    text-shadow: none !important;
+  }
+}
