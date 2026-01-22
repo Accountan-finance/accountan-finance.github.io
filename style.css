@@ -847,3 +847,54 @@ html, body {
   margin-top: 8px;
   color: #ffb400;
 }
+
+.edit-card {
+  width: 420px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  animation: fadeUp .4s ease;
+}
+
+.edit-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.edit-card .row {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-card input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.edit-card input:focus {
+  outline: 2px solid #ffbf00;
+}
+
+.edit-actions {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cancel-link {
+  text-align: center;
+  color: #aaa;
+  cursor: pointer;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
