@@ -19,7 +19,8 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  // ❗ orderBy OLIB TASHLANDI (index muammosi sabab)
+  console.log("USER UID:", user.uid); // 👈 MUHIM
+
   const q = query(
     collection(db, "support_requests"),
     where("uid", "==", user.uid)
@@ -27,8 +28,10 @@ onAuthStateChanged(auth, async (user) => {
 
   const snap = await getDocs(q);
 
+  console.log("REQUEST COUNT:", snap.size); // 👈 MUHIM
+
   if (snap.empty) {
-    list.innerHTML = "<p class='empty'>Hali murojaatlar yo‘q</p>";
+    list.innerHTML = "<p class='empty'>Murojaatlar topilmadi</p>";
     return;
   }
 
@@ -41,15 +44,13 @@ onAuthStateChanged(auth, async (user) => {
     block.className = "request-block";
 
     block.innerHTML = `
-      <div class="msg user-msg">
-        ${req.message}
-      </div>
+      <div class="msg user-msg">${req.message}</div>
       <div class="replies" id="replies-${docSnap.id}"></div>
     `;
 
     list.appendChild(block);
 
-    // ✅ JAVOBLARNI TARTIB BILAN O‘QISH
+    // JAVOBLAR
     const repliesQuery = query(
       collection(db, "support_requests", docSnap.id, "replies"),
       orderBy("createdAt", "asc")
