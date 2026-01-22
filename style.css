@@ -420,3 +420,13 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Navbar yopib ketmasligi uchun */
+#contact {
+  scroll-margin-top: 120px;
+}
+
+/* ALOQA tepasi bosilib ketmasligi uchun */
+.contact-section {
+  margin-top: 120px;
+}
