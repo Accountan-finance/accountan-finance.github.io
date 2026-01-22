@@ -780,3 +780,51 @@ html, body {
   width: 100%;
   text-align: center;
 }
+
+/* ===== PROFILE ACTIONS FIX ===== */
+
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.profile-actions a,
+.profile-actions button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+/* Secondary (Bosh sahifa, Murojaatlarim) */
+.btn-secondary {
+  background: #2a2a2a;
+  color: #ddd;
+}
+
+.btn-secondary:hover {
+  background: #3a3a3a;
+}
+
+/* Primary (Tahrirlash) */
+.btn-primary {
+  background: linear-gradient(135deg, #ffb400, #ffcc33);
+  color: #000;
+}
+
+/* Danger (Chiqish) */
+.btn-danger {
+  background: #3a1e1e;
+  color: #ff8a8a;
+}
+
+.btn-danger:hover {
+  background: #522;
+}
