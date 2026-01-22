@@ -75,7 +75,7 @@
     </div>
 
     <div class="cta-container">
-        <a href="#contact" class="cta-button cta-primary">Bepul maslahat</a>
+       <a href="#" id="freeConsultBtn">Bepul maslahat</a>
        <a href="#services" class="cta-button cta-secondary">Xizmatlarimiz</a>
     </div>
 </section>
@@ -307,9 +307,33 @@
   });
 </script>
 
-  
+  <script type="module">
+  import { auth } from "./firebase.js";
+  import { onAuthStateChanged }
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  const freeBtn = document.getElementById("freeConsultBtn");
+
+  if (freeBtn) {
+    freeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // login bor → support
+          window.location.href = "support.html";
+        } else {
+          // login yo‘q → login
+          window.location.href = "login.html";
+        }
+      });
+    });
+  }
+</script>
+
 </body>
 </html>
+
 
 
 
