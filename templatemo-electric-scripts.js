@@ -1,3 +1,10 @@
+if (window.innerWidth <= 768) {
+  document.querySelectorAll('.text-set').forEach((el, i) => {
+    if (i !== 0) el.style.display = 'none';
+  });
+}
+
+
 // ============================
 // PARTICLES
 // ============================
@@ -114,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("CURRENCY ERROR:", err));
 
 });
+
 
 
 
