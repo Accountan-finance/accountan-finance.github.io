@@ -3,14 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Kirish</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h2>Google orqali kirish</h2>
-  <button id="googleLogin">Google bilan kirish</button>
+<div class="profile-page">
+  <div class="profile-card">
 
-  <script type="module" src="firebase.js"></script>
-  <script type="module" src="auth.js"></script>
+    <h2 class="profile-title">Kirish</h2>
 
+    <p class="profile-email">
+      Google orqali tizimga kiring
+    </p>
+
+    <button id="googleLogin" class="btn-save">
+      Google bilan kirish
+    </button>
+
+  </div>
+</div>
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="auth.js"></script>
 </body>
 </html>
