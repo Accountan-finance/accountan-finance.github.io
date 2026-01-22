@@ -49,7 +49,7 @@ onAuthStateChanged(auth, async (user) => {
       });
 
       alert("Ma’lumotlar saqlandi");
-      location.href = "profile.html"; // xohlasang index.html qilamiz
+     location.href = "index.html"; // xohlasang index.html qilamiz
 
     } catch (err) {
       alert("Saqlashda xato: " + err.message);
