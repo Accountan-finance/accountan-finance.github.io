@@ -310,3 +310,38 @@ body {
   color: #ffffff;
 }
 
+<section class="contact" id="contact">
+  <h2 class="section-title">ALOQA</h2>
+
+  <div class="contact-boxes">
+
+    <!-- TELEGRAM -->
+    <a href="https://t.me/buxgalteriyaXizmatlariUz" target="_blank" class="contact-card telegram">
+      <i class="fa-brands fa-telegram"></i>
+      <h4>Telegram</h4>
+      <p>@buxgalteriyaXizmatlariUz</p>
+    </a>
+
+    <!-- INSTAGRAM -->
+    <a href="https://www.instagram.com/buxgalter.xizmati/" target="_blank" class="contact-card instagram">
+      <i class="fa-brands fa-instagram"></i>
+      <h4>Instagram</h4>
+      <p>@buxgalter.xizmati</p>
+    </a>
+
+    <!-- JOYLASHUV -->
+    <a 
+      href="https://www.google.com/maps/search/?api=1&query=Toshkent+Chilonzor+NUES+biznes+markazi"
+      target="_blank"
+      class="contact-card location"
+    >
+      <i class="fa-solid fa-location-dot"></i>
+      <h4>Joylashuv</h4>
+      <p>
+        Toshkent sh. Chilonzor tum.<br>
+        NUES biznes markazi
+      </p>
+    </a>
+
+  </div>
+</section>
