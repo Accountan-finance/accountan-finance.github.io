@@ -1,9 +1,15 @@
 // auth.js
-import { auth } from "./firebase.js";
-import {
-  GoogleAuthProvider,
-  signInWithPopup
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { doc, getDoc }
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const snap = await getDoc(doc(db, "users", user.uid));
+
+if (snap.exists()) {
+  location.href = "profile.html";
+} else {
+  location.href = "complete-profile.html";
+}
+
 
 const provider = new GoogleAuthProvider();
 
