@@ -8,15 +8,23 @@
 <body>
 
 <div class="profile-page">
-  <div class="profile-card">
+  <div class="chat-card">
 
-    <h2 class="profile-title">Mening murojaatlarim</h2>
+    <div class="chat-header">
+      <button class="back-btn" onclick="window.location.href='profile.html'">← Orqaga</button>
+      <h2>Mening murojaatlarim</h2>
+      <button class="home-btn" onclick="window.location.href='index.html'">🏠</button>
+    </div>
 
-    <div id="requestsList"></div>
+    <div id="requestsList" class="chat-body">
+      <!-- JS bu yerga yozadi -->
+    </div>
 
-    <a href="support.html" class="btn-save" style="margin-top:15px; display:block; text-align:center;">
-      Yangi murojaat yuborish
-    </a>
+    <div class="chat-footer">
+      <button onclick="window.location.href='support.html'" class="btn-primary">
+        ➕ Yangi murojaat yuborish
+      </button>
+    </div>
 
   </div>
 </div>
@@ -24,4 +32,3 @@
 <script type="module" src="my-requests.js"></script>
 </body>
 </html>
-
