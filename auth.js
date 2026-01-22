@@ -1,27 +1,21 @@
 // auth.js
-import { doc, getDoc }
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { auth, db } from "./firebase.js";
 
-const snap = await getDoc(doc(db, "users", user.uid));
+import {
+  GoogleAuthProvider,
+  signInWithRedirect
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-if (snap.exists()) {
-  location.href = "profile.html";
-} else {
-  location.href = "complete-profile.html";
-}
-
+import {
+  doc,
+  setDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const provider = new GoogleAuthProvider();
 
 const loginBtn = document.getElementById("googleLogin");
 
-if (loginBtn) {
-  loginBtn.addEventListener("click", async () => {
-    try {
-      await signInWithPopup(auth, provider);
-      window.location.href = "profile.html";
-    } catch (err) {
-      alert("Xatolik: " + err.message);
-    }
-  });
-}
+loginBtn.addEventListener("click", async () => {
+  await signInWithRedirect(auth, provider);
+});
