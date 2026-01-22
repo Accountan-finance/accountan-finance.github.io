@@ -30,6 +30,7 @@ sendBtn.onclick = async () => {
   sendBtn.textContent = "Yuborilmoqda...";
 
   try {
+    // 1️⃣ Firestore
     await addDoc(collection(db, "support_requests"), {
       uid: currentUser.uid,
       name: currentUser.displayName,
@@ -39,34 +40,11 @@ sendBtn.onclick = async () => {
       status: "new"
     });
 
-    status.textContent = "✅ So‘rovingiz yuborildi. Tez orada javob beramiz.";
-    status.style.color = "#00ff9c";
-    messageInput.value = "";
+    // 2️⃣ Telegram
+    const TELEGRAM_TOKEN = "8444694860:AAFtoXB4guexabZv9AY7heh5zOZ9ZvSATXQ";
+    const TELEGRAM_CHAT_ID = 1736401983;
 
-  } catch (err) {
-    status.textContent = "❌ Xatolik: " + err.message;
-    status.style.color = "#ff4444";
-  }
-
-  sendBtn.disabled = false;
-  sendBtn.textContent = "Yuborish";
-};
-
-// Firestore yozildi
-await addDoc(collection(db, "support_requests"), {
-  uid: currentUser.uid,
-  name: currentUser.displayName,
-  email: currentUser.email,
-  message: messageInput.value,
-  createdAt: new Date(),
-  status: "new"
-});
-
-// 🔔 TELEGRAMGA XABAR (await bilan!)
-const TELEGRAM_TOKEN = "BOT_TOKENING";
-const TELEGRAM_CHAT_ID = 1736401983;
-
-const text = `
+    const text = `
 📩 Yangi bepul maslahat
 
 👤 ${currentUser.displayName}
@@ -75,12 +53,26 @@ const text = `
 📝 ${messageInput.value}
 `;
 
-await fetch(`https://api.telegram.org/bot${8444694860:AAFtoXB4guexabZv9AY7heh5zOZ9ZvSATXQ}/sendMessage`, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    chat_id: TELEGRAM_CHAT_ID,
-    text
-  })
-});
+    await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: text
+      })
+    });
 
+    // 3️⃣ UI
+    status.textContent = "✅ So‘rovingiz yuborildi. Tez orada javob beramiz.";
+    status.style.color = "#00ff9c";
+    messageInput.value = "";
+
+  } catch (err) {
+    console.error(err);
+    status.textContent = "❌ Xatolik: " + err.message;
+    status.style.color = "#ff4444";
+  }
+
+  sendBtn.disabled = false;
+  sendBtn.textContent = "Yuborish";
+};
