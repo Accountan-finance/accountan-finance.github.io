@@ -828,3 +828,22 @@ html, body {
 .btn-danger:hover {
   background: #522;
 }
+
+.request-card {
+  background: #1e1e1e;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 15px;
+}
+
+.reply-box {
+  margin-top: 10px;
+  padding: 10px;
+  background: #2a2a2a;
+  border-left: 3px solid #ffb400;
+}
+
+.waiting {
+  margin-top: 8px;
+  color: #ffb400;
+}
