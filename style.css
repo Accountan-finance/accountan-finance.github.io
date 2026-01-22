@@ -465,3 +465,70 @@ footer .copyright {
   margin-bottom: 10px;
   color: #ff3b3b;
 }
+
+/* ===== NAVBAR ANIMATION & COLOR FIX ===== */
+
+.main-nav a {
+  position: relative;
+  color: #e6e6e6;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 6px 0;
+  transition: color 0.3s ease;
+}
+
+/* Pastdan chiziq animatsiyasi */
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff3b3b, #ff8a00);
+  transition: width 0.35s ease;
+}
+
+/* Hover holati */
+.main-nav a:hover {
+  color: #ff3b3b;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+/* Active (bosilgan) link */
+.main-nav a.active {
+  color: #ff3b3b;
+}
+
+.main-nav a.active::after {
+  width: 100%;
+}
+
+#navbar {
+  background: linear-gradient(
+    90deg,
+    rgba(20, 20, 20, 0.95),
+    rgba(40, 10, 10, 0.95),
+    rgba(10, 20, 30, 0.95)
+  );
+  box-shadow: 0 4px 25px rgba(255, 80, 0, 0.15);
+  backdrop-filter: blur(6px);
+}
+
+@keyframes navbarFade {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#navbar {
+  animation: navbarFade 0.8s ease-out;
+}
