@@ -1,35 +1,43 @@
-auth.onAuthStateChanged(async user => {
+import { auth, db } from "./firebase.js";
+import { onAuthStateChanged, signOut }
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { doc, getDoc, setDoc }
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location.href = "login.html";
+    location.href = "login.html";
     return;
   }
 
-  document.getElementById("user-email").innerText = user.email;
+  email.textContent = user.email;
 
-  const ref = db.collection("users").doc(user.uid);
-  const doc = await ref.get();
+  const ref = doc(db, "users", user.uid);
+  const snap = await getDoc(ref);
 
-  if (doc.exists) {
-    const d = doc.data();
-    fullname.value = d.fullname || "";
-    phone.value    = d.phone || "";
-    company.value  = d.company || "";
-    city.value     = d.city || "";
+  if (snap.exists()) {
+    const d = snap.data();
+    firstName.value = d.firstName || "";
+    lastName.value = d.lastName || "";
+    company.value = d.company || "";
+    phone.value = d.phone || "";
   }
+
+  profileForm.onsubmit = async (e) => {
+    e.preventDefault();
+    await setDoc(ref, {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      company: company.value,
+      phone: phone.value,
+      googleEmail: user.email,
+      updatedAt: new Date()
+    });
+    alert("Ma’lumotlar saqlandi");
+  };
 });
 
-function saveProfile() {
-  const user = auth.currentUser;
-  if (!user) return;
-
-  db.collection("users").doc(user.uid).set({
-    fullname: fullname.value,
-    phone: phone.value,
-    company: company.value,
-    city: city.value,
-    email: user.email,
-    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-  }).then(() => {
-    alert("Saqlandi ✅");
-  });
-}
+logoutBtn.onclick = async () => {
+  await signOut(auth);
+  location.href = "index.html";
+};
