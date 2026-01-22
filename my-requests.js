@@ -19,7 +19,6 @@ auth.onAuthStateChanged(async (user) => {
   const q = query(
     collection(db, "support_requests"),
     where("uid", "==", user.uid),
-    orderBy("createdAt", "desc")
   );
 
   const snapshot = await getDocs(q);
