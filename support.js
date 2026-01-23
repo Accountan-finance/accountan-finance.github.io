@@ -31,3 +31,12 @@ btn.onclick = async () => {
   status.textContent = "✅ Yuborildi";
   btn.disabled = false;
 };
+await sendToTelegram(
+  `🆕 YANGI MUROJAAT
+
+👤 Email: ${user.email}
+🆔 UID: ${user.uid}
+
+💬 Xabar:
+${msg.value}`
+);
