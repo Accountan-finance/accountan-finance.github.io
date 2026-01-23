@@ -23,10 +23,15 @@ onAuthStateChanged(auth, (user) => {
   onSnapshot(q, (snap) => {
     list.innerHTML = "";
 
-    if (snap.empty) {
-      list.innerHTML = "<p>Murojaatlar yo‘q</p>";
-      return;
-    }
+  if (snap.empty) {
+  list.innerHTML = `
+    <div class="chat-card" style="opacity:.6; align-self:center;">
+      Hozircha murojaatlar yo‘q
+    </div>
+  `;
+  return;
+}
+
 
     snap.forEach(doc => {
       const d = doc.data();
