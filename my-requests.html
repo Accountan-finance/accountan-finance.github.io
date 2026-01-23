@@ -9,17 +9,21 @@
 
 <div class="profile-page">
   <div class="profile-card">
-    <h2>📨 Mening murojaatlarim</h2>
 
-    <!-- MUHIM -->
-    <div id="requests"></div>
+    <div class="top-bar">
+      <a href="profile.html">← Orqaga</a>
+      <button onclick="location.href='support.html'" class="btn-save">
+        + Yangi murojaat yuborish
+      </button>
+    </div>
 
-    <a href="support.html" class="btn-primary" style="margin-top:20px;">
-      ➕ Yangi murojaat yuborish
-    </a>
+    <!-- 👇 MUROJAATLAR SHU YERDA BO‘LADI -->
+    <div id="requests" class="chat-box"></div>
+
   </div>
 </div>
 
 <script type="module" src="my-requests.js"></script>
+
 </body>
 </html>
