@@ -1,19 +1,15 @@
 import { auth, db } from "./firebase.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import {
-  collection,
-  query,
-  orderBy,
-  onSnapshot,
-  addDoc,
-  serverTimestamp
+  collection, query, orderBy, onSnapshot,
+  addDoc, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { onAuthStateChanged } from
-  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+const ADMIN_EMAILS = ["boshqaishlaruch@gmail.com"];
 const list = document.getElementById("adminRequests");
 
-onAuthStateChanged(auth, (user) => {
-  if (!user || user.email !== "boshqaishlaruch@gmail.com") {
+onAuthStateChanged(auth, user => {
+  if (!user || !ADMIN_EMAILS.includes(user.email)) {
     location.href = "profile.html";
     return;
   }
@@ -23,35 +19,36 @@ onAuthStateChanged(auth, (user) => {
     orderBy("createdAt", "desc")
   );
 
-  onSnapshot(q, (snap) => {
+  onSnapshot(q, snap => {
     list.innerHTML = "";
 
-    snap.forEach((docSnap) => {
-      const d = docSnap.data();
-
+    snap.forEach(doc => {
+      const d = doc.data();
       list.innerHTML += `
         <div class="chat-card">
           <div class="user-msg">
-            <b>${d.name || "Mijoz"}</b><br>${d.message}
+            <b>${d.name}</b><br>${d.message}
           </div>
-          <textarea id="reply-${docSnap.id}" placeholder="Javob yozing"></textarea>
-          <button onclick="sendReply('${docSnap.id}')">Yuborish</button>
+
+          <input placeholder="Javob yozish..."
+            onkeydown="if(event.key==='Enter') sendReply('${doc.id}', this)">
         </div>
       `;
     });
   });
 });
 
-window.sendReply = async (id) => {
-  const text = document.getElementById(`reply-${id}`).value;
-  if (!text) return;
+window.sendReply = async (id, input) => {
+  if (!input.value.trim()) return;
 
   await addDoc(
     collection(db, "support_requests", id, "replies"),
     {
-      text,
+      text: input.value,
       from: "admin",
       createdAt: serverTimestamp()
     }
   );
+
+  input.value = "";
 };
