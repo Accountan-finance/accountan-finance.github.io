@@ -1,14 +1,85 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Admin panel</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: radial-gradient(circle at top, #111, #000);
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+
+    .admin-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #0f0f0f;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 0 40px rgba(0,0,0,.7);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .request {
+      border: 1px solid #222;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 15px;
+      background: #151515;
+    }
+
+    .request small {
+      color: #aaa;
+    }
+
+    textarea {
+      width: 100%;
+      margin-top: 10px;
+      background: #1c1c1c;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 8px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #ffc107;
+      font-weight: bold;
+    }
+
+    .top-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .top-actions a {
+      color: #ffc107;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
 
-<div class="admin-panel">
-  <h2>📩 Barcha murojaatlar</h2>
+<div class="admin-container">
+  <div class="top-actions">
+    <a href="profile.html">⬅ Profilga qaytish</a>
+    <span>🛠 Admin panel</span>
+  </div>
+
+  <h2>Mijoz murojaatlari</h2>
+
   <div id="requests"></div>
 </div>
 
