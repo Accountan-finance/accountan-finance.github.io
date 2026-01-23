@@ -1,42 +1,37 @@
-
 import { auth, db } from "./firebase.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { onAuthStateChanged } from
+  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import {
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const msg = document.getElementById("supportMessage");
-const btn = document.getElementById("sendSupport");
-const status = document.getElementById("status");
+const form = document.getElementById("supportForm");
+const textarea = document.getElementById("message");
 
-let user = null;
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    alert("Avval login qiling");
+    location.href = "login.html";
+    return;
+  }
 
-onAuthStateChanged(auth, u => {
-  if (!u) location.href = "login.html";
-  user = u;
-});
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-btn.onclick = async () => {
-  if (!msg.value.trim()) return;
+    const text = textarea.value.trim();
+    if (!text) return alert("Xabar bo‘sh");
 
-  btn.disabled = true;
+    await addDoc(collection(db, "support_requests"), {
+      uid: user.uid,
+      email: user.email,
+      message: text,
+      createdAt: serverTimestamp(),
+      status: "new"
+    });
 
-  await addDoc(collection(db, "support_requests"), {
-    uid: user.uid,
-    email: user.email,
-    name: user.displayName || "Mijoz",
-    message: msg.value,
-    createdAt: serverTimestamp()
+    textarea.value = "";
+    alert("Murojaat yuborildi");
   });
-
-  msg.value = "";
-  status.textContent = "✅ Yuborildi";
-  btn.disabled = false;
-};
-sendToTelegram(
-  `🆕 YANGI MUROJAAT
-
-👤 ${user.email}
-🆔 ${user.uid}
-
-💬 ${msg.value}`
-);
-
+});
