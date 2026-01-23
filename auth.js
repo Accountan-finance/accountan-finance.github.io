@@ -34,15 +34,68 @@ document.getElementById("emailLogin")?.addEventListener("click", async () => {
   });
 
 
+import {
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const db = getFirestore();
+
 /* =====================
-   RO‘YXATDAN O‘TISH
+   RO‘YXATDAN O‘TISH (TO‘LIQ)
 ===================== */
 document.getElementById("registerBtn")?.addEventListener("click", async () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
-  await createUserWithEmailAndPassword(auth, email, password);
+  const fullName = document.getElementById("fullName")?.value.trim();
+  const phone = document.getElementById("phone")?.value.trim();
+  const company = document.getElementById("company")?.value.trim();
+
+  const status = document.getElementById("status");
+
+  // 🔴 Majburiy tekshiruv
+  if (!email || !password || !fullName || !phone) {
+    status.textContent = "Barcha majburiy maydonlarni to‘ldiring ❗";
+    status.style.color = "orange";
+    return;
+  }
+
+  try {
+    // 1️⃣ Firebase Auth
+    const userCred = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    // 2️⃣ Firestore — profil ma’lumotlari
+    await setDoc(doc(db, "users", userCred.user.uid), {
+      email,
+      fullName,
+      phone,
+      company: company || "",
+      createdAt: serverTimestamp()
+    });
+
+    status.textContent = "Ro‘yxatdan o‘tish muvaffaqiyatli ✅";
+    status.style.color = "green";
+
+    // 3️⃣ Profilga o‘tish
+    window.location.href = "profile.html";
+
+  } catch (err) {
+    status.textContent = err.message;
+    status.style.color = "red";
+  }
 });
+
 
 /* =====================
    EMAIL LINK (parolsiz)
