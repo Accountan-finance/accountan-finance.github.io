@@ -3,11 +3,11 @@ import {
   collection,
   query,
   where,
-  onSnapshot,
-  orderBy
+  orderBy,
+  onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { onAuthStateChanged } from
-"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const list = document.getElementById("requests");
 
@@ -17,63 +17,51 @@ onAuthStateChanged(auth, (user) => {
     return;
   }
 
-  // 🔹 faqat shu user murojaatlari
   const q = query(
     collection(db, "support_requests"),
     where("uid", "==", user.uid),
-    orderBy("createdAt", "desc")
+    orderBy("createdAt", "asc")
   );
 
   onSnapshot(q, (snap) => {
     list.innerHTML = "";
 
     if (snap.empty) {
-      list.innerHTML = "<p class='empty'>Murojaatlar yo‘q</p>";
+      list.innerHTML = "<p>Murojaatlar yo‘q</p>";
       return;
     }
 
     snap.forEach((docSnap) => {
       const d = docSnap.data();
-      const id = docSnap.id;
 
-      const card = document.createElement("div");
-      card.className = "chat-card";
-
-      card.innerHTML = `
-        <div class="user-msg">
-          ${d.message}
-          <span class="time">🕒 ${new Date(d.createdAt.seconds * 1000).toLocaleString()}</span>
+      list.innerHTML += `
+        <div class="chat-card">
+          <div class="user-msg">${d.message}</div>
+          <div id="replies-${docSnap.id}"></div>
         </div>
-        <div class="replies" id="replies-${id}"></div>
       `;
 
-      list.appendChild(card);
-
-      loadReplies(id);
+      loadReplies(docSnap.id);
     });
   });
 });
 
 function loadReplies(requestId) {
-  const repliesBox = document.getElementById(`replies-${requestId}`);
-  if (!repliesBox) return;
-
-  const q = query(
-    collection(db, "support_requests", requestId, "replies"),
-    orderBy("createdAt", "asc")
+  const repliesRef = collection(
+    db,
+    "support_requests",
+    requestId,
+    "replies"
   );
 
-  onSnapshot(q, (snap) => {
-    repliesBox.innerHTML = "";
+  onSnapshot(repliesRef, (snap) => {
+    const box = document.getElementById(`replies-${requestId}`);
+    if (!box) return;
+    box.innerHTML = "";
 
     snap.forEach((r) => {
-      const d = r.data();
-
-      repliesBox.innerHTML += `
-        <div class="admin-msg">
-          ${d.text}
-          <span class="time">🛠 ${new Date(d.createdAt.seconds * 1000).toLocaleString()}</span>
-        </div>
+      box.innerHTML += `
+        <div class="admin-msg">${r.data().text}</div>
       `;
     });
   });
