@@ -45,7 +45,15 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const db = getFirestore();
+import { db } from "./firebase.js";
+await setDoc(doc(db, "users", userCred.user.uid), {
+  email,
+  fullName,
+  phone,
+  company,
+  createdAt: serverTimestamp()
+});
+
 
 /* =====================
    RO‘YXATDAN O‘TISH (TO‘LIQ)
