@@ -3,45 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <title>Profil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Umumiy dizayn -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="profile-page">
-  <div class="profile-card">
+  <div class="profile-page">
+    <div class="profile-card">
 
-    <h2>Profil</h2>
+      <h2>Profil</h2>
 
-    <p class="profile-email" id="userEmail"></p>
-    <p id="userName"></p>
-    <p id="userPhone"></p>
-<p id="userOrg"></p>
+      <!-- Foydalanuvchi ma'lumotlari -->
+      <p class="profile-email" id="userEmail">Google email: </p>
+      <p id="userName">Ism: </p>
+      <p id="userPhone">Telefon: </p>
+      <p id="userOrg">Tashkilot: </p>
 
-<div class="profile-actions">
-  <a href="index.html" class="btn-secondary">
-    ⬅ Bosh sahifa
-  </a>
+      <!-- Tugmalar -->
+      <div class="profile-actions">
 
-  <a href="edit-profile.html" class="btn-primary">
-    ✏️ Tahrirlash
-  </a>
-<button id="adminBtn" class="btn-admin" style="display:none;">
-  🛠 Admin panel
-</button>
+        <a href="index.html" class="btn-secondary">
+          ⬅ Bosh sahifa
+        </a>
 
-  <a href="my-requests.html" class="btn-secondary">
-    📝 Murojaatlarim
-  </a>
+        <a href="edit-profile.html" class="btn-primary">
+          ✏️ Tahrirlash
+        </a>
 
-  <button id="logoutBtn" class="btn-danger">
-    🚪 Chiqish
-  </button>
-</div>
+        <!-- FAQAT ADMIN UCHUN -->
+        <a href="admin.html"
+           id="adminBtn"
+           class="btn-admin"
+           style="display:none;">
+          🛠 Admin panel
+        </a>
 
+        <a href="my-requests.html" class="btn-secondary">
+          📝 Murojaatlarim
+        </a>
+
+        <button id="logoutBtn" class="btn-danger">
+          🚪 Chiqish
+        </button>
+
+      </div>
+
+    </div>
   </div>
-</div>
 
-<script type="module" src="profile.js"></script>
+  <!-- Profil logikasi -->
+  <script type="module" src="profile.js"></script>
 
 </body>
 </html>
