@@ -24,8 +24,15 @@ document.getElementById("emailLogin")?.addEventListener("click", async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  await signInWithEmailAndPassword(auth, email, password);
-});
+ signInWithEmailAndPassword(auth, email, password)
+  .then(() => {
+    window.location.href = "profile.html";
+  })
+  .catch((error) => {
+    status.textContent = "Email yoki parol noto‘g‘ri ❌";
+    status.style.color = "red";
+  });
+
 
 /* =====================
    RO‘YXATDAN O‘TISH
