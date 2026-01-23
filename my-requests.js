@@ -1,6 +1,13 @@
 import { auth, db } from "./firebase.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { collection, query, where, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import {
+  collection,
+  query,
+  where,
+  orderBy,
+  onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { onAuthStateChanged } from
+  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const list = document.getElementById("requests");
 
@@ -15,10 +22,18 @@ onAuthStateChanged(auth, (user) => {
 
   onSnapshot(q, (snap) => {
     list.innerHTML = "";
+
+    if (snap.empty) {
+      list.innerHTML = "<p>Murojaatlar yo‘q</p>";
+      return;
+    }
+
     snap.forEach(doc => {
+      const d = doc.data();
       list.innerHTML += `
         <div class="chat-card">
-          <div class="user-msg">${doc.data().message}</div>
+          <div class="user-msg">${d.message}</div>
+          <div class="status">Holat: ${d.status}</div>
         </div>
       `;
     });
