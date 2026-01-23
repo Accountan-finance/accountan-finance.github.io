@@ -1183,3 +1183,71 @@ html, body {
   background: #ffb400;
   color: #000;
 }
+
+/* === CHAT CARD (asosiy blok) === */
+.chat-card {
+  background: rgba(30, 30, 35, 0.92);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 16px;
+  color: #f1f1f1;
+}
+
+/* === MIJOZ XABARI === */
+.user-msg {
+  background: #2a2a2e;
+  color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 14px;
+  margin: 6px 0;
+  max-width: 80%;
+  font-size: 14px;
+}
+
+/* === ADMIN JAVOBI === */
+.admin-msg {
+  background: linear-gradient(135deg, #6a00ff, #8f3bff);
+  color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 14px;
+  margin: 6px 0;
+  max-width: 80%;
+  align-self: flex-end;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(120, 60, 255, 0.35);
+}
+
+/* === CHAT ICHI === */
+.chat-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* === HOLAT TEXT === */
+.request-status {
+  color: #ffcc00;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+/* === ADMIN INPUT === */
+.reply-box textarea {
+  background: #1f1f23;
+  color: #ffffff;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 8px;
+  width: 100%;
+}
+
+.reply-box button {
+  margin-top: 6px;
+  background: #ffb400;
+  color: #000;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
