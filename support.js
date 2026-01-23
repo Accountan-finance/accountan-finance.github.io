@@ -7,31 +7,44 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const form = document.getElementById("supportForm");
-const textarea = document.getElementById("message");
+// HTML elementlar
+const textarea = document.getElementById("supportMessage");
+const sendBtn = document.getElementById("sendSupport");
+const statusText = document.getElementById("status");
 
 onAuthStateChanged(auth, (user) => {
   if (!user) {
-    alert("Avval login qiling");
     location.href = "login.html";
     return;
   }
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  if (!textarea || !sendBtn) {
+    console.error("HTML elementlar topilmadi");
+    return;
+  }
 
+  sendBtn.addEventListener("click", async () => {
     const text = textarea.value.trim();
-    if (!text) return alert("Xabar bo‘sh");
 
-    await addDoc(collection(db, "support_requests"), {
-      uid: user.uid,
-      email: user.email,
-      message: text,
-      createdAt: serverTimestamp(),
-      status: "new"
-    });
+    if (!text) {
+      statusText.textContent = "Xabar bo‘sh bo‘lmasin";
+      return;
+    }
 
-    textarea.value = "";
-    alert("Murojaat yuborildi");
+    try {
+      await addDoc(collection(db, "support_requests"), {
+        uid: user.uid,
+        email: user.email,
+        message: text,
+        createdAt: serverTimestamp(),
+        status: "new"
+      });
+
+      textarea.value = "";
+      statusText.textContent = "✅ Yuborildi";
+    } catch (e) {
+      console.error(e);
+      statusText.textContent = "❌ Xatolik yuz berdi";
+    }
   });
 });
