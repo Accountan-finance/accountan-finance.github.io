@@ -1117,3 +1117,42 @@ html, body {
   border: none;
   cursor: pointer;
 }
+
+
+.chat-container {
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+.chat-card {
+  background: #111;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+
+.user-msg {
+  background: #222;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.admin-msg {
+  background: #2a004f;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  margin-left: 40px;
+}
+
+.page-title {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back-link {
+  color: #ffc107;
+  margin-left: 20px;
+  display: inline-block;
+}
