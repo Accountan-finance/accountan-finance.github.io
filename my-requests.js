@@ -1,57 +1,61 @@
-import { auth } from "./firebase.js";
-import { onAuthStateChanged } from
-  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    window.location.href = "login.html";
-  }
-});
-
 import { auth, db } from "./firebase.js";
 import {
   collection,
   query,
   where,
   orderBy,
-  getDocs
+  onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-auth.onAuthStateChanged(async (user) => {
+const list = document.getElementById("requests");
+
+onAuthStateChanged(auth, (user) => {
   if (!user) {
-    window.location.href = "login.html";
+    location.href = "login.html";
     return;
   }
-
-  const list = document.getElementById("requestsList");
-  list.innerHTML = "";
 
   const q = query(
     collection(db, "support_requests"),
     where("uid", "==", user.uid),
+    orderBy("createdAt", "desc")
   );
 
-  const snapshot = await getDocs(q);
+  onSnapshot(q, (snap) => {
+    list.innerHTML = "";
 
-  if (snapshot.empty) {
-    list.innerHTML = "<p class='empty'>Hozircha murojaat yo‘q</p>";
-    return;
-  }
+    if (snap.empty) {
+      list.innerHTML = "<p>Murojaatlar yo‘q</p>";
+      return;
+    }
 
-  snapshot.forEach(doc => {
-    const data = doc.data();
+    snap.forEach((doc) => {
+      const d = doc.data();
 
-    const item = document.createElement("div");
-    item.className = "request-item";
+      list.innerHTML += `
+        <div class="chat-card">
+          <div class="user-msg">${d.message}</div>
+          <div id="replies-${doc.id}"></div>
+        </div>
+      `;
 
-    item.innerHTML = `
-      <div class="msg user">${data.message}</div>
-      <div class="status">${data.status}</div>
-      <a href="request-chat.html?id=${doc.id}" class="open-chat">
-        Chatni ochish →
-      </a>
-    `;
-
-    list.appendChild(item);
+      loadReplies(doc.id);
+    });
   });
 });
+
+function loadReplies(requestId) {
+  const repliesRef = collection(db, "support_requests", requestId, "replies");
+
+  onSnapshot(repliesRef, (snap) => {
+    const box = document.getElementById(`replies-${requestId}`);
+    box.innerHTML = "";
+
+    snap.forEach((r) => {
+      box.innerHTML += `
+        <div class="admin-msg">${r.data().text}</div>
+      `;
+    });
+  });
+}
