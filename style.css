@@ -1156,3 +1156,30 @@ html, body {
   margin-left: 20px;
   display: inline-block;
 }
+
+.chat-box {
+  margin-top: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* har bir murojaat */
+.chat-card {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.08);
+  padding: 12px 14px;
+  border-radius: 12px;
+  max-width: 75%;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* agar keyin admin javobi qo‘shilsa */
+.chat-card.admin {
+  align-self: flex-end;
+  background: #ffb400;
+  color: #000;
+}
