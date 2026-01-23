@@ -1,38 +1,25 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Mening murojaatlarim</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <div class="profile-page">
-  <div class="chat-card">
+  <div class="profile-card">
+    <h2>📨 Mening murojaatlarim</h2>
 
-    <div class="chat-header">
-      <button class="back-btn" onclick="window.location.href='profile.html'">← Orqaga</button>
+    <!-- MUHIM -->
+    <div id="requests"></div>
 
-      <!-- LOGO -->
-      <img src="logo.png" alt="Logo" class="site-logo">
-
-      <button class="home-btn" onclick="window.location.href='index.html'">🏠</button>
-    </div>
-
-    <div id="requestsList" class="chat-body">
-      <!-- JS yozadi -->
-    </div>
-
-    <div class="chat-footer">
-      <button onclick="window.location.href='support.html'" class="btn-primary">
-        ➕ Yangi murojaat yuborish
-      </button>
-    </div>
-
+    <a href="support.html" class="btn-primary" style="margin-top:20px;">
+      ➕ Yangi murojaat yuborish
+    </a>
   </div>
 </div>
-<div id="requests"></div>
-<script type="module" src="my-requests.js"></script>
 
+<script type="module" src="my-requests.js"></script>
 </body>
 </html>
