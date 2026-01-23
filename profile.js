@@ -8,7 +8,10 @@ onAuthStateChanged(auth, async (user) => {
   if (!user) {
     location.href = "login.html";
     return;
-  }
+ if (user.email === "boshqaishlaruch@gmail.com") {
+  // admin
+}
+
 
   document.getElementById("userEmail").textContent =
     "Google email: " + user.email;
