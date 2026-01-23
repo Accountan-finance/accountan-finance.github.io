@@ -44,3 +44,23 @@ onAuthStateChanged(auth, (user) => {
     });
   });
 });
+
+function loadReplies(requestId) {
+  const repliesRef = collection(db, "support_requests", requestId, "replies");
+
+  onSnapshot(repliesRef, (snap) => {
+    const box = document.getElementById(`replies-${requestId}`);
+    if (!box) return;
+
+    box.innerHTML = "";
+
+    snap.forEach((r) => {
+      box.innerHTML += `
+        <div class="admin-msg">
+          ${r.data().text}
+        </div>
+      `;
+    });
+  });
+}
+
