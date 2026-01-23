@@ -1,52 +1,60 @@
-import { auth, db } from "./firebase.js";
 import {
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import {
-  doc,
-  setDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+import { auth } from "./firebase.js";
+
+/* =========================
+   GOOGLE LOGIN
+========================= */
 const provider = new GoogleAuthProvider();
 
-const loginBtn = document.getElementById("googleLogin");
+document.getElementById("googleLogin")?.addEventListener("click", async () => {
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (e) {
+    alert(e.message);
+  }
+});
 
-if (loginBtn) {
-  loginBtn.addEventListener("click", async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
+/* =========================
+   EMAIL + PASSWORD LOGIN
+========================= */
+document.getElementById("loginBtn")?.addEventListener("click", async () => {
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
 
-      // user Firestore ga yoziladi (birinchi marta bo‘lsa)
-      await setDoc(
-        doc(db, "users", user.uid),
-        {
-          email: user.email,
-          name: user.displayName,
-          createdAt: serverTimestamp()
-        },
-        { merge: true }
-      );
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (e) {
+    alert(e.message);
+  }
+});
 
-      window.location.href = "profile.html";
-    } catch (err) {
-      alert("Kirishda xatolik: " + err.message);
-      console.error(err);
-    }
-  });
-}
+/* =========================
+   REGISTRATION
+========================= */
+document.getElementById("registerBtn")?.addEventListener("click", async () => {
+  const email = document.getElementById("registerEmail").value;
+  const password = document.getElementById("registerPassword").value;
 
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+  } catch (e) {
+    alert(e.message);
+  }
+});
 
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const auth = getAuth();
-
+/* =========================
+   SINGLE REDIRECT POINT
+========================= */
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log("Login OK:", user.email);
+    console.log("Kirdi:", user.email);
     window.location.href = "profile.html";
   }
 });
