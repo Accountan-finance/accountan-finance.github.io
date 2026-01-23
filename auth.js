@@ -33,26 +33,28 @@ document.getElementById("emailLogin")?.addEventListener("click", async () => {
     status.style.color = "red";
   });
 
-
-import {
-  createUserWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
 import { db } from "./firebase.js";
-await setDoc(doc(db, "users", userCred.user.uid), {
-  email,
-  fullName,
-  phone,
-  company,
-  createdAt: serverTimestamp()
-});
+
+try {
+  const userCred = await createUserWithEmailAndPassword(auth, email, password);
+
+  await setDoc(doc(db, "users", userCred.user.uid), {
+    email,
+    fullName,
+    phone,
+    company,
+    createdAt: serverTimestamp()
+  });
+
+  console.log("Firestore yozildi:", userCred.user.uid);
+
+  window.location.href = "profile.html";
+
+} catch (err) {
+  console.error("REG ERROR:", err);
+  status.textContent = err.message;
+}
+
 
 
 /* =====================
