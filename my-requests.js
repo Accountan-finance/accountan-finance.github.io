@@ -3,10 +3,11 @@ import {
   collection,
   query,
   where,
-  orderBy,
-  onSnapshot
+  onSnapshot,
+  orderBy
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { onAuthStateChanged } from
+"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const list = document.getElementById("requests");
 
@@ -16,6 +17,7 @@ onAuthStateChanged(auth, (user) => {
     return;
   }
 
+  // 🔹 faqat shu user murojaatlari
   const q = query(
     collection(db, "support_requests"),
     where("uid", "==", user.uid),
@@ -26,35 +28,52 @@ onAuthStateChanged(auth, (user) => {
     list.innerHTML = "";
 
     if (snap.empty) {
-      list.innerHTML = "<p>Murojaatlar yo‘q</p>";
+      list.innerHTML = "<p class='empty'>Murojaatlar yo‘q</p>";
       return;
     }
 
-    snap.forEach((doc) => {
-      const d = doc.data();
+    snap.forEach((docSnap) => {
+      const d = docSnap.data();
+      const id = docSnap.id;
 
-      list.innerHTML += `
-        <div class="chat-card">
-          <div class="user-msg">${d.message}</div>
-          <div id="replies-${doc.id}"></div>
+      const card = document.createElement("div");
+      card.className = "chat-card";
+
+      card.innerHTML = `
+        <div class="user-msg">
+          ${d.message}
+          <span class="time">🕒 ${new Date(d.createdAt.seconds * 1000).toLocaleString()}</span>
         </div>
+        <div class="replies" id="replies-${id}"></div>
       `;
 
-      loadReplies(doc.id);
+      list.appendChild(card);
+
+      loadReplies(id);
     });
   });
 });
 
 function loadReplies(requestId) {
-  const repliesRef = collection(db, "support_requests", requestId, "replies");
+  const repliesBox = document.getElementById(`replies-${requestId}`);
+  if (!repliesBox) return;
 
-  onSnapshot(repliesRef, (snap) => {
-    const box = document.getElementById(`replies-${requestId}`);
-    box.innerHTML = "";
+  const q = query(
+    collection(db, "support_requests", requestId, "replies"),
+    orderBy("createdAt", "asc")
+  );
+
+  onSnapshot(q, (snap) => {
+    repliesBox.innerHTML = "";
 
     snap.forEach((r) => {
-      box.innerHTML += `
-        <div class="admin-msg">${r.data().text}</div>
+      const d = r.data();
+
+      repliesBox.innerHTML += `
+        <div class="admin-msg">
+          ${d.text}
+          <span class="time">🛠 ${new Date(d.createdAt.seconds * 1000).toLocaleString()}</span>
+        </div>
       `;
     });
   });
