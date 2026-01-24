@@ -13,36 +13,54 @@
     <h2 class="profile-title">Kirish</h2>
 
     <p class="profile-email">
-      Google orqali tizimga kiring
+      Hisobingizga kiring
     </p>
 
+    <!-- GOOGLE LOGIN -->
     <button id="googleLogin" class="btn-save">
       Google bilan kirish
     </button>
-<hr class="divider">
 
-<input id="loginEmail" type="email" placeholder="Email" required>
-<input id="loginPassword" type="password" placeholder="Parol" required>
+    <hr class="divider">
 
-<button id="loginBtn">Kirish</button>
+    <!-- EMAIL + PASSWORD LOGIN -->
+    <input
+      id="loginEmail"
+      type="email"
+      placeholder="Email"
+      required
+    >
 
-<p>
-  Hisobingiz yo‘qmi?
-  <a href="register.html">Ro‘yxatdan o‘tish</a>
-</p>
+    <input
+      id="loginPassword"
+      type="password"
+      placeholder="Parol"
+      required
+    >
 
+    <button id="loginBtn" class="btn-primary">
+      Kirish
+    </button>
 
-<hr class="divider">
+    <p style="margin-top:10px;">
+      Hisobingiz yo‘qmi?
+      <a href="register.html">Ro‘yxatdan o‘tish</a>
+    </p>
 
-<!-- Email link (parolsiz) -->
-<input type="email" id="emailLink" placeholder="Email (parolsiz kirish)">
+    <hr class="divider">
 
-<button id="sendLink" class="btn-secondary">
-  Emailga kirish linkini yuborish
-</button>
+    <!-- EMAIL LINK LOGIN -->
+    <input
+      id="emailLink"
+      type="email"
+      placeholder="Email (parolsiz kirish)"
+    >
 
+    <button id="sendLink" class="btn-secondary">
+      Emailga kirish linkini yuborish
+    </button>
 
-<p id="status"></p>
+    <p id="status"></p>
 
   </div>
 </div>
