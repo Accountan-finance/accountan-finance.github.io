@@ -130,3 +130,15 @@ onAuthStateChanged(auth, (user) => {
     window.location.href = "profile.html";
   }
 });
+loginBtn.addEventListener("click", async () => {
+  try {
+    await signInWithEmailAndPassword(
+      auth,
+      loginEmail.value,
+      loginPassword.value
+    );
+    window.location.href = "profile.html";
+  } catch (e) {
+    alert("Email yoki parol xato");
+  }
+});
