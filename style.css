@@ -1381,3 +1381,50 @@ button:hover {
   margin-bottom: 6px;
 }
 
+/* =====================
+   MOBILE ADAPTATION
+===================== */
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .profile-page {
+    padding: 12px;
+  }
+
+  .profile-card,
+  .chat-card,
+  .admin-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  h1, h2, h3 {
+    font-size: 18px;
+  }
+
+  input,
+  textarea,
+  button {
+    font-size: 16px;
+  }
+
+  textarea {
+    min-height: 100px;
+  }
+
+  .btn-save,
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+
+  .chat-card {
+    margin-bottom: 12px;
+  }
+
+}
