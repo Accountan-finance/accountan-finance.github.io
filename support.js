@@ -25,6 +25,7 @@ onAuthStateChanged(auth, (user) => {
         message: text,
         createdAt: serverTimestamp()
       });
+await notifyTelegram(user, text);
 
       textarea.value = "";
       status.textContent = "✅ Yuborildi";
@@ -35,36 +36,43 @@ onAuthStateChanged(auth, (user) => {
   });
 });
 
-async function notifyTelegram(text, email) {
+async function notifyTelegram(user, text) {
   const TOKEN = "8444694860:AAHCOKSRgS7oSQQo8FysQSogt1B4V_PN70k";
   const CHAT_ID = "1736401983";
 
- // 🔍 foydalanuvchi profilini olish
-const userDoc = await getDoc(doc(db, "users", user.uid));
+  try {
+    // 🔍 foydalanuvchi profili
+    const snap = await getDoc(doc(db, "users", user.uid));
 
-let fullName = "Noma’lum foydalanuvchi";
-let email = user.email || "—";
+    let fullName = "Noma’lum foydalanuvchi";
+    let email = user.email || "—";
 
-if (userDoc.exists()) {
-  const u = userDoc.data();
-  fullName = `${u.firstName || ""} ${u.lastName || ""}`.trim() || fullName;
-}
+    if (snap.exists()) {
+      const u = snap.data();
+      fullName =
+        `${u.firstName || ""} ${u.lastName || ""}`.trim() ||
+        fullName;
+    }
 
-// 🔔 TELEGRAMGA CHIROYLI XABAR
-sendTelegram(
-  `<b>📩 Yangi bepul maslahat</b>\n\n` +
-  `👤 ${fullName}\n` +
-  `📧 ${email}\n\n` +
-  `📝 ${text}`
-);
+    // 📨 TELEGRAM MATNI
+    const message =
+      `<b>📩 Yangi bepul maslahat</b>\n\n` +
+      `👤 ${fullName}\n` +
+      `📧 ${email}\n\n` +
+      `📝 ${text}`;
 
+    // 🚀 YUBORISH
+    await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: message,
+        parse_mode: "HTML"
+      })
+    });
 
-  await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: CHAT_ID,
-      text: msg
-    })
-  });
+  } catch (err) {
+    console.error("Telegram xatosi:", err);
+  }
 }
