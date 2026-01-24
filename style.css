@@ -1428,3 +1428,164 @@ button:hover {
   }
 
 }
+/* =====================================================
+   📱 MOBILE FIX PACK — ACCOUNTAN FINANCE
+   Qo‘shish joyi: style.css ENG OXIRI
+   ===================================================== */
+
+/* 🔹 1. GLOBAL MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+
+  /* Animatsiyalarni tezlashtiramiz */
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.2s !important;
+  }
+
+  /* Og‘ir effektlarni o‘chiramiz */
+  .blur,
+  .glass,
+  .glass-card,
+  .bg-blur {
+    backdrop-filter: none !important;
+    filter: none !important;
+  }
+
+  /* Shadow’larni yengillashtiramiz */
+  * {
+    box-shadow: none !important;
+  }
+}
+
+/* 🔹 2. NAVBAR / HEADER FIX */
+@media (max-width: 768px) {
+
+  header,
+  .header,
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+
+  .nav-links,
+  .menu,
+  .navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 8px;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .nav-links a,
+  .menu a {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+}
+
+/* 🔹 3. SECTION SCROLL CUT FIX (Biz haqimizda, Aloqa) */
+section,
+[id] {
+  scroll-margin-top: 90px;
+}
+
+/* 🔹 4. HERO / BOSH SAHIFA TEXT ANIMATION SPEED */
+@media (max-width: 768px) {
+
+  .hero-text,
+  .animated-text,
+  .typing-text {
+    animation-duration: 2.5s !important;
+  }
+}
+
+/* 🔹 5. BUTTONS MOBILE ADAPTATION */
+@media (max-width: 768px) {
+
+  button,
+  .btn,
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    max-width: 100%;
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* 🔹 6. YANGILIKLAR (NEWS) FULL SHOW FIX */
+@media (max-width: 768px) {
+
+  .news,
+  .news-section,
+  .news-list,
+  .news-card {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: static !important;
+  }
+
+  .news-card {
+    margin-bottom: 16px;
+    padding: 16px;
+  }
+}
+
+/* 🔹 7. CARD / CONTAINER WIDTH FIX */
+@media (max-width: 768px) {
+
+  .container,
+  .card,
+  .profile-card,
+  .chat-card {
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* 🔹 8. CHAT / MUROJAAT MOBILE FIX */
+@media (max-width: 768px) {
+
+  .chat-card {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .user-msg,
+  .admin-msg {
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+}
+
+/* 🔹 9. INPUT / FORM MOBILE FIX */
+@media (max-width: 768px) {
+
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* iOS zoom bug fix */
+    width: 100%;
+  }
+}
+
+/* 🔹 10. PERFORMANCE BOOST (SCROLL LAG FIX) */
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+}
