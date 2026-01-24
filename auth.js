@@ -1,3 +1,5 @@
+console.log("AUTH.JS ISHLADI");
+
 // auth.js
 import { auth, db } from "./firebase.js";
 
