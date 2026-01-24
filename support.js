@@ -41,11 +41,11 @@ async function notifyTelegram(user, text) {
   const CHAT_ID = "1736401983";
 
   try {
-    // 🔍 foydalanuvchi profili
+    // 👤 foydalanuvchi profili
     const snap = await getDoc(doc(db, "users", user.uid));
 
     let fullName = "Noma’lum foydalanuvchi";
-    let email = user.email || "—";
+    const userEmail = user.email || "—";
 
     if (snap.exists()) {
       const u = snap.data();
@@ -54,14 +54,12 @@ async function notifyTelegram(user, text) {
         fullName;
     }
 
-    // 📨 TELEGRAM MATNI
     const message =
       `<b>📩 Yangi bepul maslahat</b>\n\n` +
       `👤 ${fullName}\n` +
-      `📧 ${email}\n\n` +
+      `📧 ${userEmail}\n\n` +
       `📝 ${text}`;
 
-    // 🚀 YUBORISH
     await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
