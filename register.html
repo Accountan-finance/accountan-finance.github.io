@@ -1,18 +1,40 @@
+<!DOCTYPE html>
+<html lang="uz">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> … </title>
-
-  <input id="fullName" placeholder="Ism Familiya" required>
-<input id="phone" placeholder="Telefon raqam" required>
-<input id="company" placeholder="Tashkilot nomi" required>
-
-<input id="regEmail" type="email" placeholder="Email" required>
-<input id="regPassword" type="password" placeholder="Parol" required>
-
-<button id="registerBtn">Ro‘yxatdan o‘tish</button>
-
+  <title>Ro‘yxatdan o‘tish</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="templatemo-electric-xtra.css">
 </head>
+<body>
 
+<div class="profile-page">
+  <div class="profile-card">
+
+    <h2 class="profile-title">Ro‘yxatdan o‘tish</h2>
+
+    <input id="fullName" type="text" placeholder="Ism Familiya" required>
+    <input id="phone" type="tel" placeholder="Telefon raqam" required>
+    <input id="organization" type="text" placeholder="Tashkilot nomi" required>
+
+    <input id="regEmail" type="email" placeholder="Email" required>
+    <input id="regPassword" type="password" placeholder="Parol" required>
+
+    <button id="registerBtn" class="btn-save">
+      Ro‘yxatdan o‘tish
+    </button>
+
+    <p id="registerStatus"></p>
+
+    <p style="margin-top:10px;">
+      Hisobingiz bormi?
+      <a href="login.html">Kirish</a>
+    </p>
+
+  </div>
+</div>
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="auth.js"></script>
+
+</body>
+</html>
