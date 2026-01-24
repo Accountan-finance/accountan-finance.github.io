@@ -78,13 +78,13 @@ const registerBtn = document.getElementById("registerBtn");
 
 if (registerBtn) {
   registerBtn.addEventListener("click", async () => {
-    const name = document.getElementById("fullName")?.value;
-    const phone = document.getElementById("phone")?.value;
-    const organization = document.getElementById("organization")?.value;
-    const email = document.getElementById("regEmail")?.value;
+    const fullName = document.getElementById("fullName")?.value.trim();
+    const phone = document.getElementById("phone")?.value.trim();
+    const organization = document.getElementById("organization")?.value.trim();
+    const email = document.getElementById("regEmail")?.value.trim();
     const password = document.getElementById("regPassword")?.value;
 
-    if (!name || !phone || !organization || !email || !password) {
+    if (!fullName || !phone || !organization || !email || !password) {
       alert("Barcha maydonlarni to‘ldiring");
       return;
     }
@@ -93,7 +93,7 @@ if (registerBtn) {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
 
       await setDoc(doc(db, "users", cred.user.uid), {
-        name,
+        fullName,
         phone,
         organization,
         email,
@@ -106,3 +106,4 @@ if (registerBtn) {
     }
   });
 }
+
