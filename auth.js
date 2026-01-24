@@ -57,54 +57,56 @@ try {
 
 
 
-/* =====================
-   RO‘YXATDAN O‘TISH (TO‘LIQ)
-===================== */
-document.getElementById("registerBtn")?.addEventListener("click", async () => {
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
+// auth.js
+import { auth, db } from "./firebase.js";
+import {
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import {
+  doc,
+  setDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-  const fullName = document.getElementById("fullName")?.value.trim();
-  const phone = document.getElementById("phone")?.value.trim();
-  const company = document.getElementById("company")?.value.trim();
+const registerBtn = document.getElementById("registerBtn");
 
-  const status = document.getElementById("status");
+if (registerBtn) {
+  registerBtn.addEventListener("click", async () => {
+    const fullName = document.getElementById("fullName").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const company = document.getElementById("company").value.trim();
+    const email = document.getElementById("regEmail").value.trim();
+    const password = document.getElementById("regPassword").value;
 
-  // 🔴 Majburiy tekshiruv
-  if (!email || !password || !fullName || !phone) {
-    status.textContent = "Barcha majburiy maydonlarni to‘ldiring ❗";
-    status.style.color = "orange";
-    return;
-  }
+    // ✅ MAJBURIY TEKSHIRUV
+    if (!fullName || !phone || !company || !email || !password) {
+      alert("Barcha maydonlarni to‘ldiring");
+      return;
+    }
 
-  try {
-    // 1️⃣ Firebase Auth
-    const userCred = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    try {
+      const userCred = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-    // 2️⃣ Firestore — profil ma’lumotlari
-    await setDoc(doc(db, "users", userCred.user.uid), {
-      email,
-      fullName,
-      phone,
-      company: company || "",
-      createdAt: serverTimestamp()
-    });
+      // 🔐 PROFIL MA’LUMOTLARINI FIRESTORE’GA SAQLASH
+      await setDoc(doc(db, "users", userCred.user.uid), {
+        fullName,
+        phone,
+        company,
+        email,
+        createdAt: serverTimestamp()
+      });
 
-    status.textContent = "Ro‘yxatdan o‘tish muvaffaqiyatli ✅";
-    status.style.color = "green";
+      window.location.href = "profile.html";
+    } catch (err) {
+      alert(err.message);
+    }
+  });
+}
 
-    // 3️⃣ Profilga o‘tish
-    window.location.href = "profile.html";
-
-  } catch (err) {
-    status.textContent = err.message;
-    status.style.color = "red";
-  }
-});
 
 
 /* =====================
