@@ -26,18 +26,16 @@ if (googleBtn) {
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
-      const user = result.user;
 
-      const ref = doc(db, "users", user.uid);
-      const snap = await getDoc(ref);
+      const userRef = doc(db, "users", result.user.uid);
+      const snap = await getDoc(userRef);
 
       if (!snap.exists()) {
-        await setDoc(ref, {
-          fullName: user.displayName || "",
-          email: user.email,
-          phone: user.phoneNumber || "",
-          company: "",
-          provider: "google",
+        await setDoc(userRef, {
+          email: result.user.email,
+          name: result.user.displayName || "",
+          phone: "",
+          organization: "",
           createdAt: serverTimestamp()
         });
       }
@@ -50,14 +48,14 @@ if (googleBtn) {
 }
 
 /* =====================
-   EMAIL + PASSWORD LOGIN
+   EMAIL LOGIN
 ===================== */
 const loginBtn = document.getElementById("loginBtn");
 
 if (loginBtn) {
   loginBtn.addEventListener("click", async () => {
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value;
+    const email = document.getElementById("loginEmail")?.value;
+    const password = document.getElementById("loginPassword")?.value;
 
     if (!email || !password) {
       alert("Email va parolni kiriting");
@@ -80,14 +78,14 @@ const registerBtn = document.getElementById("registerBtn");
 
 if (registerBtn) {
   registerBtn.addEventListener("click", async () => {
-    const fullName = document.getElementById("fullName").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const company = document.getElementById("company").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+    const name = document.getElementById("fullName")?.value;
+    const phone = document.getElementById("phone")?.value;
+    const organization = document.getElementById("organization")?.value;
+    const email = document.getElementById("regEmail")?.value;
+    const password = document.getElementById("regPassword")?.value;
 
-    if (!fullName || !phone || !company || !email || !password) {
-      alert("Barcha maydonlarni to‘ldiring!");
+    if (!name || !phone || !organization || !email || !password) {
+      alert("Barcha maydonlarni to‘ldiring");
       return;
     }
 
@@ -95,11 +93,10 @@ if (registerBtn) {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
 
       await setDoc(doc(db, "users", cred.user.uid), {
-        fullName,
+        name,
         phone,
-        company,
+        organization,
         email,
-        provider: "email",
         createdAt: serverTimestamp()
       });
 
