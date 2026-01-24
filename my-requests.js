@@ -66,3 +66,50 @@ onAuthStateChanged(auth, (user) => {
 });
 
 
+/* =====================
+   TELEGRAM NOTIFICATION
+===================== */
+
+// 🔴 O'ZINGNIKI BILAN ALMASHTIR
+const TELEGRAM_BOT_TOKEN = "8444694860:AAHCOKSRgS7oSQQo8FysQSogt1B4V_PN70k";
+const TELEGRAM_CHAT_ID = "1736401983";
+
+// yangi xabarlarni 1 marta yuborish uchun
+const notifiedRequests = new Set();
+
+function sendTelegram(text) {
+  fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: TELEGRAM_CHAT_ID,
+      text
+    })
+  }).catch(err => console.error("Telegram error:", err));
+}
+
+// 🔔 yangi murojaatni kuzatish
+onAuthStateChanged(auth, (user) => {
+  if (!user) return;
+
+  const qNotify = query(
+    collection(db, "support_requests"),
+    where("uid", "==", user.uid)
+  );
+
+  onSnapshot(qNotify, (snap) => {
+    snap.docChanges().forEach(change => {
+      if (change.type === "added") {
+        const id = change.doc.id;
+        const d = change.doc.data();
+
+        if (notifiedRequests.has(id)) return;
+        notifiedRequests.add(id);
+
+        sendTelegram(
+          `🆕 Yangi murojaat\n\n📩 ${d.message}\n\n👤 UID: ${user.uid}`
+        );
+      }
+    });
+  });
+});
