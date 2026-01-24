@@ -42,7 +42,22 @@ onAuthStateChanged(auth, (user) => {
           <div class="replies" id="replies-${id}"></div>
         </div>
       `;
+import { sendToTelegram } from "./telegram.js";
 
+await addDoc(collection(db, "support_requests"), {
+  userId: auth.currentUser.uid,
+  message: text,
+  createdAt: serverTimestamp(),
+  status: "new"
+});
+
+// 🔔 TELEGRAMGA XABAR
+sendToTelegram(
+  `<b>📩 Yangi murojaat</b>\n\n` +
+  `👤 User: ${auth.currentUser.email}\n` +
+  `📝 Matn: ${text}`
+);
+      
       // admin javoblari
       onSnapshot(
         query(
@@ -64,19 +79,5 @@ onAuthStateChanged(auth, (user) => {
     });
   });
 });
-import { sendToTelegram } from "./telegram.js";
 
-await addDoc(collection(db, "support_requests"), {
-  userId: auth.currentUser.uid,
-  message: text,
-  createdAt: serverTimestamp(),
-  status: "new"
-});
-
-// 🔔 TELEGRAMGA XABAR
-sendToTelegram(
-  `<b>📩 Yangi murojaat</b>\n\n` +
-  `👤 User: ${auth.currentUser.email}\n` +
-  `📝 Matn: ${text}`
-);
 
