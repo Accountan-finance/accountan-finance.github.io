@@ -1,8 +1,9 @@
 import { auth, db } from "./firebase.js";
+
 import {
   doc,
   getDoc,
-  updateDoc
+  setDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 import {
@@ -53,12 +54,16 @@ saveBtn.addEventListener("click", async () => {
   }
 
   try {
-    await updateDoc(doc(db, "users", currentUserId), {
-      firstName,
-      lastName,
-      organization,
-      phone
-    });
+    await setDoc(
+      doc(db, "users", currentUserId),
+      {
+        firstName,
+        lastName,
+        organization,
+        phone
+      },
+      { merge: true } // 🔥 ASOSIY YECHIM SHU
+    );
 
     statusText.textContent = "✅ Saqlandi";
     statusText.style.color = "#00ff9c";
