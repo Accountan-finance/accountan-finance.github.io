@@ -37,7 +37,25 @@ async function notifyTelegram(text, email) {
   const TOKEN = "8444694860:AAHCOKSRgS7oSQQo8FysQSogt1B4V_PN70k";
   const CHAT_ID = "1736401983";
 
-  const msg = `🆕 Yangi murojaat\n👤 ${email}\n\n💬 ${text}`;
+ // 🔍 foydalanuvchi profilini olish
+const userDoc = await getDoc(doc(db, "users", user.uid));
+
+let fullName = "Noma’lum foydalanuvchi";
+let email = user.email || "—";
+
+if (userDoc.exists()) {
+  const u = userDoc.data();
+  fullName = `${u.firstName || ""} ${u.lastName || ""}`.trim() || fullName;
+}
+
+// 🔔 TELEGRAMGA CHIROYLI XABAR
+sendTelegram(
+  `<b>📩 Yangi bepul maslahat</b>\n\n` +
+  `👤 ${fullName}\n` +
+  `📧 ${email}\n\n` +
+  `📝 ${text}`
+);
+
 
   await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
     method: "POST",
